@@ -204,7 +204,14 @@
   .hero-photo .frame{
     position:relative; border:1px solid var(--blue-line); overflow:hidden;
   }
-  .hero-photo img{ width:100%; display:block; filter:grayscale(0.15) contrast(1.03); }
+  .hero-photo img{
+    width:100%;
+    height:auto;
+    aspect-ratio:4/5;
+    display:block;
+    object-fit:cover;
+    filter:grayscale(0.15) contrast(1.03);
+}
   .hero-photo .cap{
     display:flex; justify-content:space-between; align-items:baseline;
     font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-dim);
@@ -227,9 +234,13 @@
     display:grid;
     grid-template-columns:repeat(4,1fr);
     max-width:640px;
+
+    min-height:140px;
+    align-items:stretch;
+
     font-family:'JetBrains Mono',monospace;
     font-size:11px;
-  }
+}
   .titleblock div{
     padding:10px 12px;
     border-right:1px solid var(--blue-line);

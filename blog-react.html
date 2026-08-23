@@ -63,12 +63,41 @@
       "@type": "WebPage",
       "@id": "https://princetiwari.in/blog-react.html"
     },
+    "articleSection": "React",
+    "wordCount": 1500,
     "keywords": [
       "React",
       "React.js",
       "State Management",
       "Frontend Architecture",
       "JavaScript"
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://princetiwari.in/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://princetiwari.in/blog.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "React Is Not the Hard Part",
+        "item": "https://princetiwari.in/blog-react.html"
+      }
     ]
   }
   </script>
@@ -97,7 +126,7 @@
       <span></span>
     </button>
 
-    <nav class="links" id="navLinks">
+    <nav class="links" id="navLinks" aria-label="Primary navigation">
       <a href="about.html">About</a>
       <a href="stack.html">Stack</a>
       <a href="projects.html">Projects</a>
@@ -737,18 +766,51 @@ error</code></pre>
         <div class="article-navigation">
 
           <a href="blogRead.html">
+
             <span>
               PREVIOUS ARTICLE
             </span>
+
             ← I Built It. Then I Broke It.
+
           </a>
 
           <a href="blog-performance.html">
+
             <span>
               NEXT ARTICLE
             </span>
+
             Your Website Isn't Slow →
+
           </a>
+
+        </div>
+
+        <div class="related-articles">
+
+          <div class="article-section-number">
+            RELATED NOTES
+          </div>
+
+          <div class="related-articles-grid">
+
+            <a href="blog-javascript.html">
+              <span>JAVASCRIPT</span>
+              JavaScript Gets Weird When You Go Deeper →
+            </a>
+
+            <a href="blog-deployment.html">
+              <span>DEPLOYMENT</span>
+              From localhost to the Internet →
+            </a>
+
+            <a href="blogRead.html">
+              <span>FULL STACK</span>
+              What Building an E-Commerce App Taught Me →
+            </a>
+
+          </div>
 
         </div>
 
@@ -874,6 +936,7 @@ error</code></pre>
 
 <script src="js/main.js"></script>
 <script src="js/blog.js"></script>
+<script src="js/blogRead.js"></script>
 
 </body>
 </html>

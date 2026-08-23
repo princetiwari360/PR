@@ -645,3 +645,23 @@
     transition: none !important;
   }
 }
+.article-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 0;
+  height: 3px;
+
+  background: #c94f20;
+
+  z-index: 9999;
+
+  transition: width 0.08s linear;
+}
+
+.article-index a.active {
+  color: var(--ink);
+  padding-left: 8px;
+  border-left: 3px solid #c94f20;
+}

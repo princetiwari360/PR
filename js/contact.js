@@ -1,40 +1,55 @@
-emailjs.init({
-  publicKey: "wapaFyNkWceu3yWK6"
-});
+document.addEventListener("DOMContentLoaded", function () {
 
-const contactForm = document.getElementById("contact-form");
-const responseElement = document.getElementById("form-response");
-const submitButton = document.getElementById("submit-button");
+  emailjs.init({
+    publicKey: "YOUR_PUBLIC_KEY"
+  });
 
-if (contactForm) {
-  contactForm.addEventListener("submit", function (event) {
+  const form = document.getElementById("contact-form");
+  const button = document.getElementById("submit-button");
+  const response = document.getElementById("form-response");
+
+  if (!form) {
+    return;
+  }
+
+  form.addEventListener("submit", function (event) {
+
     event.preventDefault();
 
-    submitButton.disabled = true;
-    submitButton.textContent = "Sending...";
+    button.disabled = true;
+    button.textContent = "Sending...";
+    response.textContent = "";
 
-    responseElement.textContent = "";
-    responseElement.style.color = "";
+    emailjs.sendForm(
+      "service_dlj9k4k",
+      "template_fwq8azi",
+      form
+    )
+    .then(function () {
 
-    const templateParams = {
-      from_name: document.getElementById("name").value.trim(),
-      from_email: document.getElementById("email").value.trim(),
-      subject: document.getElementById("subject").value.trim(),
-      message: document.getElementById("message").value.trim()
-    };
+      response.textContent = "Message sent successfully.";
 
-    emailjs
-      .send(
-        "service_djl9k4k",
-        "template_fwq8azi",
-        templateParams
-      )
-      .then(function () {
-        responseElement.textContent =
-          "Message sent successfully! I'll get back to you soon.";
+      form.reset();
 
-        responseElement.style.color = "#2F6D4F";
+      button.disabled = false;
+      button.textContent = "Send message →";
 
+    })
+    .catch(function (error) {
+
+      console.error("EmailJS Error:", error);
+
+      response.textContent =
+        "Unable to send message. Please try again.";
+
+      button.disabled = false;
+      button.textContent = "Send message →";
+
+    });
+
+  });
+
+});
         contactForm.reset();
 
         submitButton.disabled = false;

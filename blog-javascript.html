@@ -59,6 +59,8 @@
     },
     "datePublished": "2026-08-24",
     "dateModified": "2026-08-24",
+    "articleSection": "JavaScript",
+    "wordCount": 1500,
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://princetiwari.in/blog-javascript.html"
@@ -66,9 +68,39 @@
     "keywords": [
       "JavaScript",
       "Closures",
+      "References",
       "Event Loop",
       "Promises",
-      "Async JavaScript"
+      "Async JavaScript",
+      "Call Stack",
+      "Frontend Development"
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://princetiwari.in/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://princetiwari.in/blog.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "JavaScript Gets Weird When You Go Deeper",
+        "item": "https://princetiwari.in/blog-javascript.html"
+      }
     ]
   }
   </script>
@@ -97,7 +129,7 @@
       <span></span>
     </button>
 
-    <nav class="links" id="navLinks">
+    <nav class="links" id="navLinks" aria-label="Primary navigation">
       <a href="about.html">About</a>
       <a href="stack.html">Stack</a>
       <a href="projects.html">Projects</a>
@@ -801,18 +833,51 @@ What is currently on the call stack?</code></pre>
         <div class="article-navigation">
 
           <a href="blog-database.html">
+
             <span>
               PREVIOUS ARTICLE
             </span>
+
             ← The Day My Database Became the Problem
+
           </a>
 
           <a href="blog-java.html">
+
             <span>
               NEXT ARTICLE
             </span>
+
             Java vs JavaScript: Stop Comparing Them →
+
           </a>
+
+        </div>
+
+        <div class="related-articles">
+
+          <div class="article-section-number">
+            RELATED NOTES
+          </div>
+
+          <div class="related-articles-grid">
+
+            <a href="blog-react.html">
+              <span>REACT</span>
+              React Is Not the Hard Part →
+            </a>
+
+            <a href="blog-deployment.html">
+              <span>DEPLOYMENT</span>
+              From localhost to the Internet →
+            </a>
+
+            <a href="blog-performance.html">
+              <span>PERFORMANCE</span>
+              Your Website Isn't Slow. Your Decisions Are →
+            </a>
+
+          </div>
 
         </div>
 
@@ -938,6 +1003,7 @@ What is currently on the call stack?</code></pre>
 
 <script src="js/main.js"></script>
 <script src="js/blog.js"></script>
+<script src="js/blogRead.js"></script>
 
 </body>
 </html>

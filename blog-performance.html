@@ -1,1 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Your Website Isn't Slow. Your Decisions Are. | Prince Tiwari</title>
+
+  <meta name="description" content="A practical guide to web performance covering images, JavaScript, network requests, rendering, caching and the small development decisions that make websites slow.">
+
+  <meta name="keywords" content="Web Performance, Website Speed, Frontend Performance, JavaScript Performance, React Performance, Web Optimization, Core Web Vitals, Prince Tiwari">
+
+  <meta name="author" content="Prince Tiwari">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="language" content="English">
+  <meta name="theme-color" content="#F3F1EA">
+
+  <link rel="canonical" href="https://princetiwari.in/blog-performance.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Prince Tiwari">
+  <meta property="og:title" content="Your Website Isn't Slow. Your Decisions Are.">
+  <meta property="og:description" content="Why websites become slow and how images, JavaScript, network requests and rendering decisions affect performance.">
+  <meta property="og:url" content="https://princetiwari.in/blog-performance.html">
+  <meta property="og:image" content="https://princetiwari.in/profile.jpg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Your Website Isn't Slow. Your Decisions Are.">
+  <meta name="twitter:description" content="A practical breakdown of frontend performance and website optimization.">
+  <meta name="twitter:image" content="https://princetiwari.in/profile.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/blog.css">
+  <link rel="stylesheet" href="css/blogRead.css">
+
+  <link rel="icon" type="image/png" href="Pfavicon.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Your Website Isn't Slow. Your Decisions Are.",
+    "description": "A practical guide to website performance covering images, JavaScript, network requests, rendering and optimization.",
+    "image": "https://princetiwari.in/profile.jpg",
+    "author": {
+      "@type": "Person",
+      "name": "Prince Tiwari",
+      "url": "https://princetiwari.in/"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Prince Tiwari"
+    },
+    "datePublished": "2026-08-24",
+    "dateModified": "2026-08-24",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://princetiwari.in/blog-performance.html"
+    },
+    "keywords": [
+      "Web Performance",
+      "JavaScript Performance",
+      "React Performance",
+      "Website Speed"
+    ]
+  }
+  </script>
+</head>
+
+<body class="article-page">
+
+<header class="site">
+  <div class="nav">
+
+    <a class="brand" href="index.html">
+      <span class="badge">
+        <img src="Profile.webp" alt="Prince Tiwari">
+      </span>
+      PRINCE TIWARI
+    </a>
+
+    <button
+      class="nav-toggle"
+      id="navToggle"
+      aria-label="Toggle navigation"
+      aria-expanded="false"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="links" id="navLinks">
+      <a href="about.html">About</a>
+      <a href="stack.html">Stack</a>
+      <a href="projects.html">Projects</a>
+      <a href="education.html">Education</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+  </div>
+</header>
+
+
+<main>
+
+  <section class="article-hero">
+
+    <div class="article-wrap">
+
+      <a class="article-back" href="blog.html">
+        ← Back to engineering journal
+      </a>
+
+      <div class="article-label">
+        CASE FILE / 03 · PERFORMANCE
+      </div>
+
+      <h1>
+        Your Website Isn't Slow.
+        <span>Your Decisions Are.</span>
+      </h1>
+
+      <p class="article-lead">
+        A website rarely becomes slow because of one dramatic mistake.
+        More often, performance disappears through dozens of small
+        decisions that nobody notices individually.
+      </p>
+
+      <div class="article-meta">
+
+        <div>
+          <span>AUTHOR</span>
+          <strong>Prince Tiwari</strong>
+        </div>
+
+        <div>
+          <span>PUBLISHED</span>
+          <strong>24 Aug 2026</strong>
+        </div>
+
+        <div>
+          <span>READ TIME</span>
+          <strong>7 min</strong>
+        </div>
+
+        <div>
+          <span>FIELD</span>
+          <strong>Web Performance</strong>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="article-body-section">
+
+    <div class="article-layout">
+
+      <aside class="article-sidebar">
+
+        <div class="article-index">
+
+          <span class="article-index-title">
+            ON THIS PAGE
+          </span>
+
+          <a href="#problem">01 — The problem</a>
+          <a href="#images">02 — Images</a>
+          <a href="#javascript">03 — JavaScript</a>
+          <a href="#network">04 — Network</a>
+          <a href="#rendering">05 — Rendering</a>
+          <a href="#measurement">06 — Measurement</a>
+          <a href="#mistakes">07 — Mistakes</a>
+          <a href="#final">08 — Final thought</a>
+
+        </div>
+
+      </aside>
+
+
+      <article class="article-content">
+
+        <p class="article-opening">
+          Performance is not a feature you add at the end.
+          It is a result of hundreds of decisions made while building.
+        </p>
+
+        <p>
+          Developers often notice performance only after a website starts
+          feeling slow.
+        </p>
+
+        <p>
+          The page takes too long to appear. Images pop in late.
+          Buttons feel unresponsive. Mobile users wait while desktop users
+          wonder what the problem is.
+        </p>
+
+        <p>
+          Then someone says:
+        </p>
+
+        <div class="article-highlight">
+
+          <span>
+            THE USUAL QUESTION
+          </span>
+
+          <strong>
+            “How do we make this website faster?”
+          </strong>
+
+        </div>
+
+        <p>
+          A better question is:
+        </p>
+
+        <div class="article-note">
+
+          <span class="note-label">
+            FIELD NOTE 003
+          </span>
+
+          <p>
+            What are we asking the browser to do that it does not actually
+            need to do?
+          </p>
+
+        </div>
+
+
+        <section id="problem" class="article-section">
+
+          <span class="article-section-number">
+            01 / THE PROBLEM
+          </span>
+
+          <h2>
+            Speed is the sum of many small decisions.
+          </h2>
+
+          <p>
+            A page can be slowed down by large images, unnecessary JavaScript,
+            excessive network requests, inefficient rendering, third-party
+            scripts and poorly planned data fetching.
+          </p>
+
+          <p>
+            None of these necessarily looks disastrous in isolation.
+          </p>
+
+          <p>
+            Together, they become expensive.
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>THE REQUEST CHAIN</span>
+              <span>BROWSER</span>
+            </div>
+
+            <pre><code>HTML
+ ↓
+CSS
+ ↓
+JavaScript
+ ↓
+API Requests
+ ↓
+Images
+ ↓
+Fonts
+ ↓
+Third-party Scripts
+ ↓
+Page becomes usable</code></pre>
+
+          </div>
+
+          <p>
+            The user does not care which request caused the delay.
+            They simply experience the delay.
+          </p>
+
+        </section>
+
+
+        <section id="images" class="article-section">
+
+          <span class="article-section-number">
+            02 / IMAGES
+          </span>
+
+          <h2>
+            The biggest file on your page may be a picture.
+          </h2>
+
+          <p>
+            Images are one of the easiest places to create unnecessary
+            network cost.
+          </p>
+
+          <p>
+            A photograph exported at several megabytes may look almost
+            identical to a properly compressed version that is a fraction
+            of the size.
+          </p>
+
+          <p>
+            Modern formats such as WebP and AVIF can significantly reduce
+            image transfer sizes when used appropriately.
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>BETTER IMAGE LOADING</span>
+              <span>HTML</span>
+            </div>
+
+            <pre><code>&lt;img
+  src="profile.webp"
+  alt="Prince Tiwari"
+  width="600"
+  height="600"
+  loading="lazy"
+&gt;</code></pre>
+
+          </div>
+
+          <p>
+            There is another important idea here: do not send a huge image
+            to a small display area.
+          </p>
+
+          <p>
+            If the browser only needs a 400-pixel image, delivering a
+            3000-pixel source creates unnecessary work.
+          </p>
+
+        </section>
+
+
+        <section id="javascript" class="article-section">
+
+          <span class="article-section-number">
+            03 / JAVASCRIPT
+          </span>
+
+          <h2>
+            JavaScript is powerful enough to become expensive.
+          </h2>
+
+          <p>
+            JavaScript can make an interface interactive, dynamic and useful.
+            It can also become one of the most expensive parts of a page.
+          </p>
+
+          <p>
+            Every script has to be downloaded, parsed and executed.
+            Large bundles can therefore affect both network performance and
+            CPU time.
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>THINK BEFORE LOADING</span>
+              <span>JAVASCRIPT</span>
+            </div>
+
+            <pre><code>Do I need this script?
+
+Does it run on every page?
+
+Can it load later?
+
+Can this interaction work
+without JavaScript?</code></pre>
+
+          </div>
+
+          <p>
+            The goal is not to remove JavaScript.
+            The goal is to avoid asking the browser to execute work that
+            provides little value to the user.
+          </p>
+
+        </section>
+
+
+        <section id="network" class="article-section">
+
+          <span class="article-section-number">
+            04 / NETWORK
+          </span>
+
+          <h2>
+            Every request has a price.
+          </h2>
+
+          <p>
+            A page that makes dozens of unnecessary requests creates
+            additional network overhead.
+          </p>
+
+          <p>
+            This becomes especially noticeable on mobile networks where
+            latency can matter as much as download size.
+          </p>
+
+          <div class="architecture-diagram">
+
+            <div>
+              <span>01</span>
+              <strong>REQUEST</strong>
+              <small>Browser asks</small>
+            </div>
+
+            <div class="architecture-arrow">
+              →
+            </div>
+
+            <div>
+              <span>02</span>
+              <strong>SERVER</strong>
+              <small>Processes</small>
+            </div>
+
+            <div class="architecture-arrow">
+              →
+            </div>
+
+            <div>
+              <span>03</span>
+              <strong>RESPONSE</strong>
+              <small>Data returns</small>
+            </div>
+
+          </div>
+
+          <p>
+            Good performance often comes from reducing unnecessary work
+            instead of making the existing work slightly faster.
+          </p>
+
+        </section>
+
+
+        <section id="rendering" class="article-section">
+
+          <span class="article-section-number">
+            05 / RENDERING
+          </span>
+
+          <h2>
+            The browser has work to do after downloading everything.
+          </h2>
+
+          <p>
+            Downloading HTML, CSS and JavaScript is not the end of the story.
+            The browser still has to parse the resources, calculate styles,
+            build the page and paint pixels.
+          </p>
+
+          <p>
+            This is why a small file size does not automatically guarantee
+            a fast experience.
+          </p>
+
+          <p>
+            Heavy animations, unnecessary DOM complexity and expensive
+            JavaScript operations can still make an interface feel slow.
+          </p>
+
+          <div class="article-highlight">
+
+            <span>
+              THE REAL TARGET
+            </span>
+
+            <strong>
+              Don't optimize for a smaller website.
+              Optimize for a faster experience.
+            </strong>
+
+          </div>
+
+        </section>
+
+
+        <section id="measurement" class="article-section">
+
+          <span class="article-section-number">
+            06 / MEASUREMENT
+          </span>
+
+          <h2>
+            Never optimize only by feeling.
+          </h2>
+
+          <p>
+            A page can feel fast on your own laptop and perform very
+            differently for someone on a slower device or network.
+          </p>
+
+          <p>
+            That is why performance should be measured.
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>MEASURE</span>
+              <span>WORKFLOW</span>
+            </div>
+
+            <pre><code>1. Measure
+2. Find the bottleneck
+3. Change one thing
+4. Measure again
+5. Compare
+6. Repeat</code></pre>
+
+          </div>
+
+          <p>
+            This approach is much better than changing ten things at once
+            and then guessing which change helped.
+          </p>
+
+        </section>
+
+
+        <section id="mistakes" class="article-section">
+
+          <span class="article-section-number">
+            07 / MISTAKES
+          </span>
+
+          <h2>
+            The performance mistakes I keep watching for.
+          </h2>
+
+          <div class="mistake-list">
+
+            <div>
+              <span>01</span>
+
+              <strong>
+                Huge unoptimized images
+              </strong>
+
+              <p>
+                High-resolution assets are useful when necessary, but
+                delivering them everywhere is wasteful.
+              </p>
+            </div>
+
+            <div>
+              <span>02</span>
+
+              <strong>
+                Loading everything immediately
+              </strong>
+
+              <p>
+                Not every image, component or script needs to be available
+                during the first moment of page interaction.
+              </p>
+            </div>
+
+            <div>
+              <span>03</span>
+
+              <strong>
+                Too many third-party scripts
+              </strong>
+
+              <p>
+                Analytics, widgets, trackers and external libraries can
+                quietly add significant work.
+              </p>
+            </div>
+
+            <div>
+              <span>04</span>
+
+              <strong>
+                Optimizing without measuring
+              </strong>
+
+              <p>
+                If there is no measurement, it is difficult to know whether
+                an optimization actually improved the experience.
+              </p>
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <section id="final" class="article-section">
+
+          <span class="article-section-number">
+            08 / FINAL THOUGHT
+          </span>
+
+          <h2>
+            Fast websites are usually intentional websites.
+          </h2>
+
+          <p>
+            Performance is not about blindly removing things.
+          </p>
+
+          <p>
+            It is about understanding what the user actually needs and
+            delivering that work efficiently.
+          </p>
+
+          <p>
+            Smaller images.
+            Fewer unnecessary requests.
+            Less JavaScript.
+            Better loading strategies.
+            Smarter rendering.
+            Real measurements.
+          </p>
+
+          <p>
+            None of those ideas are particularly complicated.
+            The difficult part is remembering them while building.
+          </p>
+
+          <div class="final-statement">
+
+            <span>
+              FIELD NOTE / 003
+            </span>
+
+            <strong>
+              The fastest code<br>
+              is often the code<br>
+              you decided not<br>
+              to run.
+            </strong>
+
+          </div>
+
+        </section>
+
+
+        <div class="article-author">
+
+          <div class="author-avatar">
+            <img src="Profile.webp" alt="Prince Tiwari">
+          </div>
+
+          <div>
+
+            <span>
+              WRITTEN BY
+            </span>
+
+            <strong>
+              Prince Tiwari
+            </strong>
+
+            <p>
+              Full Stack Developer focused on React, Node.js, Java,
+              databases and practical software engineering.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="article-navigation">
+
+          <a href="blog-react.html">
+            <span>
+              PREVIOUS ARTICLE
+            </span>
+            ← React Is Not the Hard Part
+          </a>
+
+          <a href="blog-deployment.html">
+            <span>
+              NEXT ARTICLE
+            </span>
+            From localhost to the Internet →
+          </a>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <section class="blog-section">
+
+    <div class="blog-wrap">
+
+      <div class="blog-cta blog-reveal">
+
+        <div>
+
+          <h2>
+            Have something<br>
+            worth building?
+          </h2>
+
+          <p>
+            Need a developer or want to discuss an interesting project?
+            Let's build something useful.
+          </p>
+
+        </div>
+
+        <a class="blog-btn" href="contact.html">
+          Contact Prince →
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+
+  <div class="wrap">
+
+    <div class="contact-grid">
+
+      <div>
+
+        <h2>
+          Let's build
+          <br>
+          something.
+        </h2>
+
+        <p style="color:var(--ink-dim); margin-top:16px; max-width:40ch;">
+          Open to full-stack developer roles and freelance MERN work.
+          Based in Noida, open to remote.
+        </p>
+
+      </div>
+
+      <div class="contact-list">
+
+        <a href="mailto:tiwariprince340@gmail.com">
+          <span class="k">Email</span>
+          tiwariprince340@gmail.com
+        </a>
+
+        <a href="tel:+916203811578">
+          <span class="k">Phone</span>
+          +91 62038 11578
+        </a>
+
+        <a
+          href="https://linkedin.com/in/princetiwariprincetiwari/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="k">LinkedIn</span>
+          Prince Tiwari
+        </a>
+
+        <a
+          href="https://github.com/PRINCETIWARI360"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="k">GitHub</span>
+          PRINCETIWARI360
+        </a>
+
+        <a
+          href="https://instagram.com/maiprrincehoon"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="k">Instagram</span>
+          @maiprrincehoon
+        </a>
+
+        <a href="index.html">
+          <span class="k">Base</span>
+          Noida, Uttar Pradesh, India
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="fine">
+      <span>
+        © <span id="year"></span> Prince Tiwari
+      </span>
+    </div>
+
+  </div>
+
+</footer>
+
+
+<script src="js/main.js"></script>
+<script src="js/blog.js"></script>
+
+</body>
+</html>

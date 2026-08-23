@@ -1,4 +1,896 @@
-<?xml version="1.0" encoding="UTF-8"?>
+Today 10:42 PM
+ek problem hai page responsive nhi hai or ek white pata na kya aa gya h my project ke samne  mai sare code det5a hu shi kro
+message wale me ye ho rha h or nav me blog section wgera sab hata diya h tumne
+ye kuch jayada ghatiya nhi lag rha h
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Prince Tiwari | Full Stack Developer | Java & MERN Stack Portfolio</title>
+
+<meta name="description" content="Official portfolio of Prince Tiwari, Full Stack Developer specializing in Java, React.js, Node.js, Express.js, MongoDB and MySQL. Explore projects, skills and contact information.">
+
+<meta name="keywords" content="Prince Tiwari, Full Stack Developer, Java Developer, MERN Stack Developer, React Developer, Node.js, Express.js, MongoDB, MySQL, Portfolio">
+
+<meta name="author" content="Prince Tiwari">
+
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<meta name="language" content="English">
+<meta name="theme-color" content="#000000">
+
+<meta name="google-site-verification" content="ZW40AE2Ij-gkd5syLewj_UvU00d8UCf0pmKIqMiKVPE">
+<meta name="p:domain_verify" content="384555490ea442523367aa8ee23955ea">
+
+<link rel="canonical" href="https://princetiwari.in/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Prince Tiwari">
+<meta property="og:title" content="Prince Tiwari | Full Stack Developer">
+<meta property="og:description" content="Official portfolio of Prince Tiwari featuring Full Stack Development projects and experience.">
+<meta property="og:url" content="https://princetiwari.in/">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Prince Tiwari | Full Stack Developer">
+<meta name="twitter:description" content="Official portfolio of Prince Tiwari.">
+<meta name="twitter:creator" content="@PrinceTiwariBR">
+
+<meta name="twitter:image" content="https://princetiwari.in/profile.jpg">
+<meta property="og:image" content="https://princetiwari.in/profile.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--paper:#F3F1EA;
+--paper-dim:#E7E4D9;
+--ink:#1B2430;
+--ink-dim:#5C6570;
+--blue:#1E3A8A;
+--blue-line:#1E3A8A55;
+--blue-faint:#1E3A8A22;
+--accent:#C4501F;
+--ok:#2F6D4F;
+--radius:2px;
+--maxw:1080px;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){
+html{scroll-behavior:auto;}
+*{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+}
+
+body{
+margin:0;
+background:
+repeating-linear-gradient(0deg, transparent, transparent 39px, var(--blue-faint) 39px, var(--blue-faint) 40px),
+repeating-linear-gradient(90deg, transparent, transparent 39px, var(--blue-faint) 39px, var(--blue-faint) 40px),
+var(--paper);
+color:var(--ink);
+font-family:'Inter', sans-serif;
+line-height:1.6;
+}
+
+::selection{ background:var(--blue); color:var(--paper); }
+
+a{ color:inherit; }
+
+.mono{ font-family:'JetBrains Mono', monospace; }
+
+.wrap{
+max-width:var(--maxw);
+margin:0 auto;
+padding:0 24px;
+}
+
+h1,h2,h3{
+font-family:'Space Grotesk', sans-serif;
+margin:0;
+letter-spacing:-0.01em;
+}
+
+:focus-visible{
+outline:2px solid var(--accent);
+outline-offset:3px;
+}
+
+/* ---------- Nav ---------- */
+header.site{
+position:sticky; top:0; z-index:40;
+background:rgba(243,241,234,0.88);
+backdrop-filter:blur(6px);
+border-bottom:1px solid var(--blue-line);
+}
+.nav{
+display:flex; align-items:center; justify-content:space-between;
+padding:14px 24px;
+max-width:var(--maxw); margin:0 auto;
+}
+.brand{
+display:flex; align-items:center; gap:10px;
+font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:15px;
+text-decoration:none;
+}
+.brand .badge{
+width:30px; height:30px; border:1.5px solid var(--ink);
+display:flex; align-items:center; justify-content:center;
+font-size:12px; font-weight:700; font-family:'JetBrains Mono',monospace;
+background:var(--paper);
+overflow:hidden;
+}
+.brand .badge img{ width:100%; height:100%; object-fit:cover; display:block; }
+nav.links{ display:flex; gap:28px; }
+nav.links a{
+text-decoration:none; font-size:13px; font-weight:600; color:var(--ink-dim);
+letter-spacing:0.03em; text-transform:uppercase;
+position:relative; padding-bottom:3px;
+}
+nav.links a::after{
+content:""; position:absolute; left:0; bottom:0; width:0; height:1.5px; background:var(--accent);
+transition:width 200ms ease;
+}
+nav.links a:hover::after, nav.links a:focus-visible::after{ width:100%; }
+.nav-toggle{ display:none; background:none; border:1px solid var(--ink); border-radius:var(--radius); width:36px; height:32px; cursor:pointer; }
+.nav-toggle span{ display:block; width:16px; height:2px; background:var(--ink); margin:3px auto; }
+
+@media (max-width: 720px){
+nav.links{
+position:absolute; top:100%; left:0; right:0;
+flex-direction:column; background:var(--paper);
+border-bottom:1px solid var(--blue-line);
+padding:16px 24px; gap:16px;
+display:none;
+}
+nav.links.open{ display:flex; }
+.nav-toggle{ display:block; }
+}
+
+/* ---------- Hero ---------- */
+.hero{
+position:relative;
+padding:96px 0 64px;
+overflow:hidden;
+}
+.hero .wrap{ position:relative; }
+.eyebrow{
+display:inline-flex; align-items:center; gap:8px;
+font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.08em;
+color:var(--blue); text-transform:uppercase; margin-bottom:18px;
+}
+.eyebrow::before{ content:"◆"; font-size:9px; }
+
+.hero h1{
+font-size:clamp(40px, 7vw, 78px);
+line-height:0.98;
+font-weight:700;
+max-width:14ch;
+}
+.hero .role{
+margin-top:18px;
+font-size:clamp(16px,2.4vw,20px);
+color:var(--ink-dim);
+max-width:52ch;
+}
+.hero .role strong{ color:var(--ink); font-weight:600; }
+
+.cta-row{ display:flex; flex-wrap:wrap; gap:12px; margin-top:32px; }
+.btn{
+display:inline-flex; align-items:center; gap:8px;
+padding:11px 20px; border-radius:var(--radius);
+font-size:13px; font-weight:600; text-decoration:none;
+border:1.5px solid var(--ink); cursor:pointer;
+font-family:'Inter',sans-serif;
+transition:transform 150ms ease, background 150ms ease, color 150ms ease;
+}
+.btn.primary{ background:var(--ink); color:var(--paper); }
+.btn.primary:hover{ background:var(--blue); border-color:var(--blue); transform:translateY(-2px); }
+.btn.ghost{ background:transparent; color:var(--ink); }
+.btn.ghost:hover{ background:var(--ink); color:var(--paper); transform:translateY(-2px); }
+
+/* leader-line callouts */
+.callouts{ position:absolute; right:24px; top:64px; width:230px; display:none; }
+@media (min-width:960px){ .callouts{ display:block; } }
+
+.hero-photo{
+border:1.5px solid var(--ink); background:var(--paper); padding:8px;
+margin-bottom:28px;
+}
+.hero-photo .frame{
+position:relative;
+border:1px solid var(--blue-line);
+overflow:hidden;
+
+aspect-ratio:4/5;
+
+}
+.hero-photo img{
+width:100%;
+height:auto;
+aspect-ratio:4/5;
+object-fit:cover;
+display:block;
+}
+.hero-photo .cap{
+display:flex; justify-content:space-between; align-items:baseline;
+font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--ink-dim);
+padding:7px 3px 2px; text-transform:uppercase; letter-spacing:0.05em;
+}
+.hero-photo .cap b{ color:var(--ink); }
+.corner-tick{ position:absolute; width:10px; height:10px; }
+.corner-tick.tl{ top:-1px; left:-1px; border-top:2px solid var(--accent); border-left:2px solid var(--accent); }
+.corner-tick.br{ bottom:-1px; right:-1px; border-bottom:2px solid var(--accent); border-right:2px solid var(--accent); }
+
+.callout{ position:relative; margin-bottom:46px; padding-left:26px; }
+.callout svg{ position:absolute; left:0; top:6px; }
+.callout .k{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--blue); letter-spacing:0.05em; }
+.callout .v{ font-size:13px; font-weight:600; margin-top:2px; }
+
+/* Title block, engineering-drawing style */
+.titleblock{
+margin-top:64px;
+border:1.5px solid var(--ink);
+display:grid;
+grid-template-columns:repeat(4,1fr);
+max-width:640px;
+
+min-height:140px;
+align-items\:stretch;
+
+font-family:'JetBrains Mono',monospace;
+font-size:11px;
+
+}
+.titleblock div{
+padding:10px 12px;
+border-right:1px solid var(--blue-line);
+border-bottom:1px solid var(--blue-line);
+}
+.titleblock div:nth-child(4n){ border-right:none; }
+.titleblock .lbl{ color:var(--ink-dim); text-transform:uppercase; letter-spacing:0.06em; font-size:9px; margin-bottom:4px; display:block; }
+.titleblock .val{ font-weight:600; color:var(--ink); }
+
+/* draw-in animation for hero underline */
+.draw-underline{
+position:relative; display:inline-block;
+}
+.draw-underline svg{ position:absolute; left:0; bottom:-6px; width:100%; height:10px; }
+.draw-underline path{
+stroke:var(--accent); stroke-width:3; fill:none;
+stroke-dasharray:400; stroke-dashoffset:400;
+animation:draw 900ms 300ms ease forwards;
+}
+@keyframes draw{ to{ stroke-dashoffset:0; } }
+
+/* ---------- Section shell ---------- */
+section{ padding:88px 0; border-top:1px solid var(--blue-line); }
+.section-head{ margin-bottom:44px; }
+.sheet-no{
+font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--blue);
+letter-spacing:0.08em; text-transform:uppercase; display:block; margin-bottom:10px;
+}
+.section-head h2{ font-size:clamp(26px,4vw,38px); }
+.section-head p.sub{ color:var(--ink-dim); max-width:60ch; margin-top:10px; font-size:15px; }
+
+.reveal{ opacity:0; transform:translateY(18px); transition:opacity 600ms ease, transform 600ms ease; }
+.reveal.visible{ opacity:1; transform:none; }
+
+/* ---------- About ---------- */
+.about-grid{ display:grid; grid-template-columns:1.3fr 1fr; gap:48px; }
+@media (max-width:760px){ .about-grid{ grid-template-columns:1fr; } }
+.about-grid p{ font-size:16px; color:var(--ink); }
+.status-card{
+border:1.5px solid var(--ink); padding:20px; font-family:'JetBrains Mono',monospace; font-size:12px;
+align-self:start;
+}
+.status-card .row{ display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px dashed var(--blue-line); }
+.status-card .row:last-child{ border-bottom:none; }
+.status-card .dot{ width:7px; height:7px; border-radius:50%; background:var(--ok); display:inline-block; margin-right:6px; }
+
+/* ---------- Stack diagram ---------- */
+.stack-diagram{ position:relative; display:flex; flex-direction:column; gap:0; max-width:720px; }
+.stack-layer{
+border:1.5px solid var(--ink); border-top:none;
+padding:20px 24px; position:relative; background:var(--paper);
+}
+.stack-layer:first-child{ border-top:1.5px solid var(--ink); }
+.stack-layer .layer-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:10px; }
+.stack-layer .layer-tag{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--blue); }
+.stack-layer h3{ font-size:17px; }
+.tags{ display:flex; flex-wrap:wrap; gap:8px; }
+.tag{
+font-family:'JetBrains Mono',monospace; font-size:11.5px;
+border:1px solid var(--blue-line); padding:4px 9px; border-radius:999px;
+color:var(--ink-dim); background:var(--paper-dim);
+}
+.flow-arrow{
+position:absolute; right:26px; top:-13px;
+width:24px; height:24px; border:1.5px solid var(--ink); border-radius:50%;
+background:var(--paper); display:flex; align-items:center; justify-content:center;
+font-size:11px; z-index:2;
+}
+
+/* ---------- Projects ---------- */
+.projects{ display:flex; flex-direction:column; gap:28px; }
+.project-card{
+border:1.5px solid var(--ink); padding:28px;
+display:grid; grid-template-columns:auto 1fr; gap:24px;
+position:relative; transition:box-shadow 200ms ease, transform 200ms ease;
+}
+.project-card:hover{ box-shadow:6px 6px 0 var(--blue-faint); transform:translate(-2px,-2px); }
+@media (max-width:720px){ .project-card{ grid-template-columns:1fr; } }
+.project-sheet{
+font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--ink-dim);
+writing-mode:vertical-rl; text-orientation:mixed; letter-spacing:0.08em;
+}
+@media (max-width:720px){ .project-sheet{ writing-mode:horizontal-tb; } }
+.project-body h3{ font-size:21px; margin-bottom:4px; }
+.project-body .tags{ margin:12px 0 16px; }
+.project-body ul{ margin:0 0 18px; padding-left:18px; color:var(--ink); font-size:14.5px; }
+.project-body li{ margin-bottom:6px; }
+.project-links{ display:flex; gap:10px; }
+.project-links a{
+font-family:'JetBrains Mono',monospace; font-size:12px; text-decoration:none;
+border-bottom:1px solid var(--ink); padding-bottom:2px; color:var(--ink);
+}
+.project-links a:hover{ color:var(--accent); border-color:var(--accent); }
+
+/* ---------- Education timeline ---------- */
+.timeline{ position:relative; padding-left:28px; }
+.timeline::before{ content:""; position:absolute; left:6px; top:6px; bottom:6px; width:1.5px; background:var(--blue-line); }
+.t-item{ position:relative; padding-bottom:36px; }
+.t-item:last-child{ padding-bottom:0; }
+.t-item::before{
+content:""; position:absolute; left:-28px; top:4px; width:11px; height:11px;
+border:1.5px solid var(--blue); background:var(--paper); border-radius:50%;
+}
+.t-item .range{ font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--blue); text-transform:uppercase; letter-spacing:0.05em; }
+.t-item h3{ font-size:17px; margin:5px 0 3px; }
+.t-item .school{ color:var(--ink-dim); font-size:14px; font-style:italic; }
+
+/* ---------- Contact / footer titleblock ---------- */
+footer{ border-top:1.5px solid var(--ink); padding:64px 0 40px; }
+.contact-grid{ display:grid; grid-template-columns:1.2fr 1fr; gap:40px; }
+@media (max-width:720px){ .contact-grid{ grid-template-columns:1fr; } }
+footer h2{ font-size:clamp(28px,5vw,44px); max-width:12ch; }
+.contact-list{ display:flex; flex-direction:column; gap:14px; margin-top:24px; }
+.contact-list a{
+display:flex; align-items:center; gap:12px;
+text-decoration:none; font-size:15px; font-weight:600;
+padding-bottom:8px; border-bottom:1px solid var(--blue-line);
+transition:padding-left 150ms ease, color 150ms ease;
+}
+.contact-list a:hover{ padding-left:8px; color:var(--blue); }
+.contact-list .k{ font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--ink-dim); text-transform:uppercase; width:64px; flex-shrink:0; }
+.fine{ margin-top:40px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-dim); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+</style>
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"Person",
+"name":"Prince Tiwari",
+"url":"https://princetiwari.in",
+"jobTitle":"Full Stack Developer",
+"description":"Official portfolio of Prince Tiwari.",
+"email":"mailto:tiwariprince340@gmail.com",
+"sameAs":[
+"https://github.com/PRINCETIWARI360",
+"https://www.linkedin.com/in/princetiwariprincetiwari",
+"https://x.com/PrinceTiwariBR",
+"https://instagram.com/maiprrincehoon",
+"https://www.facebook.com/profile.php?id=100018404438643"
+]
+}
+</script>
+<link rel="icon" type="image/png" href="Pfavicon.png">
+</head>
+<body>
+
+<header class="site">
+<div class="nav">
+<a class="brand" href="#top">
+<span class="badge"><img src="Profile.webp" alt="Prince Tiwari"></span> PRINCE TIWARI
+</a>
+<button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+<span></span><span></span><span></span>
+</button>
+<nav class="links" id="navLinks">
+<a href="#about">About</a>
+<a href="#stack">Stack</a>
+<a href="#projects">Projects</a>
+<a href="#education">Education</a>
+<a href="#contact">Contact</a>
+</nav>
+</div>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero" style="border-top:none;">
+<div class="wrap">
+<span class="eyebrow">Available for full-stack roles</span>
+<h1>
+Prince Tiwari Builds
+<span class="draw-underline">Full-Stack
+<svg viewBox="0 0 200 10" preserveAspectRatio="none"><path d="M2,6 C60,2 140,9 198,4"/></svg>
+</span>
+Apps, End to End.
+</h1>
+<p class="role">
+MCA graduate specializing in the <strong>MERN stack</strong> — React interfaces,
+Node/Express APIs, and MongoDB/SQL data layers, built with an eye for
+performance and clean architecture.
+</p>
+<div class="cta-row">
+<a class="btn primary" href="#projects">View projects</a>
+<a class="btn ghost" href="mailto:tiwariprince340@gmail.com">Get in touch</a>
+</div>
+
+  \<div class="titleblock">
+    \<div>\<span class="lbl">Name\</span>\<span class="val">Prince Tiwari\</span>\</div>
+    \<div>\<span class="lbl">Role\</span>\<span class="val">Full-Stack Dev\</span>\</div>
+    \<div>\<span class="lbl">Location\</span>\<span class="val">Noida, IN\</span>\</div>
+    \<div>\<span class="lbl">Status\</span>\<span class="val">Fresher\</span>\</div>
+    \<div>\<span class="lbl">Stack\</span>\<span class="val">MERN\</span>\</div>
+    \<div>\<span class="lbl">Sheet\</span>\<span class="val">1 / 1\</span>\</div>
+    \<div>\<span class="lbl">Rev.\</span>\<span class="val">2026\</span>\</div>
+    \<div>\<span class="lbl">Scale\</span>\<span class="val">1:1\</span>\</div>
+  \</div>
+\</div>
+
+\<div class="callouts">
+  \<div class="hero-photo">
+    \<div class="frame">
+      \<span class="corner-tick tl" aria-hidden="true">\</span>
+      \<span class="corner-tick br" aria-hidden="true">\</span>
+      \<img src="Profile.webp"
+        alt="Portrait of Prince Tiwari">
+    \</div>
+    \<div class="cap">\<span>Fig. 01\</span>\<b>P. Tiwari\</b>\</div>
+  \</div>
+  \<div class="callout" aria-hidden="true">
+    \<svg width="20" height="30">\<path d="M0,4 H10 V26" stroke="#1E3A8A" stroke-width="1.5" fill="none"/>\</svg>
+    \<div class="k">01 · Frontend\</div>
+    \<div class="v">React.js, responsive UI\</div>
+  \</div>
+  \<div class="callout">
+    \<svg width="20" height="30">\<path d="M0,4 H10 V26" stroke="#1E3A8A" stroke-width="1.5" fill="none"/>\</svg>
+    \<div class="k">02 · Backend\</div>
+    \<div class="v">Node.js, REST APIs\</div>
+  \</div>
+  \<div class="callout">
+    \<svg width="20" height="30">\<path d="M0,4 H10 V26" stroke="#1E3A8A" stroke-width="1.5" fill="none"/>\</svg>
+    \<div class="k">03 · Data\</div>
+    \<div class="v">MongoDB, MySQL\</div>
+  \</div>
+\</div>
+
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+<div class="wrap">
+<div class="section-head reveal">
+<span class="sheet-no">§ 01 — About</span>
+<h2>Grounded in fundamentals,<br>shipped through projects.</h2>
+</div>
+<div class="about-grid reveal">
+<p>
+I'm Prince Tiwari, an Indian Full Stack Developer and MCA graduate from Galgotias University. My expertise includes React.js, Node.js, Express.js, MongoDB, and MySQL. I develop scalable, responsive, and user-focused web applications using modern full-stack technologies. I'm passionate about building efficient software solutions and continuously expanding my skills in software engineering
+</p>
+<div class="status-card">
+<div class="row"><span><span class="dot"></span>Availability</span><span>Open to work</span></div>
+<div class="row"><span>Role</span><span>Full Stack Developer</span></div>
+<div class="row"><span>Education</span><span>MCA Graduate, Galgotias University</span></div>
+<div class="row"><span>Core Skills</span><span>React.js · Node.js · MySQL</span></div>
+<div class="row"><span>Location</span><span>Noida, UP, India</span></div>
+<div class="row"><span>Remote</span><span>Available</span></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- STACK -->
+<section id="stack">
+<div class="wrap">
+<div class="section-head reveal">
+<span class="sheet-no">§ 02 — Tech stack</span>
+<h2>A request's-eye view of the stack.</h2>
+<p class="sub">Each application is designed around a modern full-stack architecture, where the client communicates with backend services and the database to deliver scalable solutions</p>
+</div>
+
+  \<div class="stack-diagram reveal">
+    \<div class="stack-layer">
+      \<div class="layer-head">
+        \<span class="layer-tag">01\</span>
+        \<h3>Client layer\</h3>
+      \</div>
+      \<div class="tags">
+        \<span class="tag">React.js\</span>\<span class="tag">JavaScript\</span>
+        \<span class="tag">HTML\</span>\<span class="tag">CSS\</span>
+        \<span class="tag">Responsive Design\</span>
+      \</div>
+    \</div>
+    \<div class="stack-layer">
+      \<span class="flow-arrow">↓\</span>
+      \<div class="layer-head">
+        \<span class="layer-tag">02\</span>
+        \<h3>Server layer\</h3>
+      \</div>
+      \<div class="tags">
+        \<span class="tag">Node.js\</span>\<span class="tag">REST APIs\</span>
+        \<span class="tag">Java\</span>\<span class="tag">OOP\</span>
+      \</div>
+    \</div>
+    \<div class="stack-layer">
+      \<span class="flow-arrow">↓\</span>
+      \<div class="layer-head">
+        \<span class="layer-tag">03\</span>
+        \<h3>Data layer\</h3>
+      \</div>
+      \<div class="tags">
+        \<span class="tag">MongoDB\</span>\<span class="tag">MySQL\</span>
+        \<span class="tag">Database Design\</span>\<span class="tag">SQL\</span>
+      \</div>
+    \</div>
+    \<div class="stack-layer">
+      \<span class="flow-arrow">↓\</span>
+      \<div class="layer-head">
+        \<span class="layer-tag">04\</span>
+        \<h3>Tooling &amp; foundations\</h3>
+      \</div>
+      \<div class="tags">
+        \<span class="tag">Git\</span>\<span class="tag">GitHub\</span>
+        \<span class="tag">VS Code\</span>\<span class="tag">Eclipse\</span>
+        \<span class="tag">Android Studio\</span>\<span class="tag">Data Structures\</span>
+        \<span class="tag">Algorithms\</span>\<span class="tag">SDLC\</span>
+      \</div>
+    \</div>
+  \</div>
+\</div>
+
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+<div class="wrap">
+<div class="section-head reveal">
+<span class="sheet-no">§ 03 — Projects</span>
+<h2>Three builds, three layers exercised.</h2>
+</div>
+
+  \<div class="projects">
+
+    \<article class="project-card reveal">
+      \<div class="project-sheet">SHEET 01/03\</div>
+      \<div class="project-body">
+        \<h3>Full Stack Master — Learning Platform\</h3>
+        \<div class="tags">
+          \<span class="tag">HTML\</span>\<span class="tag">CSS\</span>\<span class="tag">JavaScript\</span>
+          \<span class="tag">React.js\</span>\<span class="tag">Node.js\</span>
+        \</div>
+        \<ul>
+          \<li>Built a comprehensive full-stack learning platform featuring tutorials on HTML, CSS, JavaScript, React, and Node.js.\</li>
+          \<li>Integrated animated video content alongside interactive code examples to boost engagement.\</li>
+          \<li>Built a responsive interface with smooth animations and transitions using modern CSS and JavaScript.\</li>
+          \<li>Added course navigation with progress tracking and bookmarking.\</li>
+        \</ul>
+        \<div class="project-links">
+          \<a href="#" data-todo="link">View code →\</a>
+          \<a href="#" data-todo="link">Live demo →\</a>
+        \</div>
+      \</div>
+    \</article>
+
+    \<article class="project-card reveal">
+      \<div class="project-sheet">SHEET 02/03\</div>
+      \<div class="project-body">
+        \<h3>E-Commerce Platform\</h3>
+        \<div class="tags">
+          \<span class="tag">HTML\</span>\<span class="tag">CSS\</span>\<span class="tag">JavaScript\</span>
+          \<span class="tag">React.js\</span>\<span class="tag">Node.js\</span>\<span class="tag">SQL\</span>
+        \</div>
+        \<ul>
+          \<li>Built a pixel-perfect e-commerce storefront with a fully responsive layout.\</li>
+          \<li>Implemented product filtering, sorting, a shopping cart, and a wishlist using React hooks.\</li>
+          \<li>Designed dynamic product pages with an image gallery, size selection, and add-to-cart flow.\</li>
+          \<li>Optimized performance for fast load times via code splitting and lazy loading.\</li>
+        \</ul>
+        \<div class="project-links">
+          \<a href="#" data-todo="link">View code →\</a>
+          \<a href="#" data-todo="link">Live demo →\</a>
+        \</div>
+      \</div>
+    \</article>
+
+    \<article class="project-card reveal">
+      \<div class="project-sheet">SHEET 03/03\</div>
+      \<div class="project-body">
+        \<h3>ELIXIR – Premium Mineral Water Store\</h3>
+        \<div class="tags">
+          \<span class="tag">Bootstrap\</span>\<span class="tag">CSS\</span>\<span class="tag">JavaScript\</span>\<span class="tag">React.js\</span>
+        \</div>
+        \<ul>
+          \<li>Developed a premium mineral water e-commerce website with a modern, responsive UI using React.js.\</li>
+          \<li>Built reusable React components for products, navigation, and user interactions.\</li>
+          \<li>Implemented product browsing, search functionality, and category-based filtering.\</li>
+          \<li>Designed an engaging landing page with premium branding and smooth user experience.\</li>
+          \<li>Optimized the interface for desktop, tablet, and mobile devices using responsive design\</li>
+        \</ul>
+        \<div class="project-links">
+          \<a href="#" data-todo="link">View code →\</a>
+          \<a href="[https://luxury-drinks.vercel.app/](https://luxury-drinks.vercel.app/)" data-todo="link">Live demo →\</a>
+        \</div>
+      \</div>
+    \</article>
+
+  \</div>
+\</div>
+
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+<div class="wrap">
+<div class="section-head reveal">
+<span class="sheet-no">§ 04 — Education</span>
+<h2>Timeline.</h2>
+</div>
+<div class="timeline reveal">
+<div class="t-item">
+<span class="range">Jul 2024 — Jul 2026</span>
+<h3>Master of Computer Applications (MCA)</h3>
+<div class="school">Galgotias University, Greater Noida</div>
+</div>
+<div class="t-item">
+<span class="range">Jan 2021 — Feb 2024</span>
+<h3>Bachelor of Computer Application (BCA)</h3>
+<div class="school">SDGI Ghaziabad</div>
+</div>
+<div class="t-item">
+<span class="range">Completed</span>
+<h3>Secondary Education</h3>
+<div class="school">High School, Jamunaha</div>
+</div>
+</div>
+</div>
+</section>
+
+</main>
+
+<footer id="contact">
+<div class="wrap">
+<div class="contact-grid">
+<div>
+<h2>Let's build<br>something.</h2>
+<p style="color:var(--ink-dim); margin-top:16px; max-width:40ch;">
+Open to full-stack developer roles and freelance MERN work.
+Based in Noida, open to remote.
+</p>
+</div>
+<div class="contact-list">
+<a href="mailto:tiwariprince340@gmail.com"><span class="k">Email</span> tiwariprince340@gmail.com</a>
+<a href="tel:+916203811578"><span class="k">Phone</span> +91 62038 11578</a>
+<a href="https://linkedin.com/in/princetiwariprincetiwari/" target="_blank" rel="noreferrer"><span class="k">LinkedIn</span> Prince Tiwari</a>
+<a href="https://x.com/PrinceTiwariBR" target="_blank" rel="noopener noreferrer">
+<span class="k">X</span> @PrinceTiwariBR
+</a>
+
+   \<a href="[https://instagram.com/maiprrincehoon](https://instagram.com/maiprrincehoon)" target="\_blank" rel="noopener noreferrer">
+   \<span class="k">Instagram\</span> @maiprrincehoon
+   \</a>
+    \<a href="#top">\<span class="k">Base\</span> Noida, Uttar Pradesh, India\</a>
+  \</div>
+\</div>
+\<div class="fine">
+  \<span>© \<span id="year">\</span> Prince Tiwari\</span>
+  
+\</div>
+
+</div>
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+const toggle = document.getElementById('navToggle');
+const links = document.getElementById('navLinks');
+toggle.addEventListener('click', () => {
+const open = links.classList.toggle('open');
+toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+});
+links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+links.classList.remove('open');
+toggle.setAttribute('aria-expanded', 'false');
+}));
+
+const io = new IntersectionObserver((entries) => {
+entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
+
+ye to create kr diya ab css kaise kru or uske ander file kaise
+css ban gya abe iske ander kaise
+add file hi nhi h
+add new services?
+update services pe click krne pe 2nd image aa rha h
+contact.js : document.addEventListener("DOMContentLoaded", function () {
+  emailjs.init({
+    publicKey: "wapafyNkWceu3yWK6"
+  });
+
+  const form = document.getElementById("contact-form");
+  const button = document.getElementById("submit-button");
+  const response = document.getElementById("form-response");
+
+  if (!form) {
+    console.error("Contact form not found.");
+    return;
+  }
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    button.disabled = true;
+    button.textContent = "Sending...";
+    response.textContent = "";
+
+    emailjs.sendForm(
+      "service_djI9k4k",
+      "template_fwq8azi",
+      form
+    )
+    .then(function (result) {
+      console.log("SUCCESS:", result.status, result.text);
+
+      response.textContent = "Message sent successfully.";
+      response.style.color = "green";
+
+      form.reset();
+
+      button.disabled = false;
+      button.textContent = "Send message →";
+    })
+    .catch(function (error) {
+      console.error("EMAILJS ERROR:", error);
+      console.error("ERROR STATUS:", error.status);
+      console.error("ERROR TEXT:", error.text);
+
+      response.textContent =
+        "Error: " + (error.text || "Unable to send message.");
+
+      response.style.color = "red";
+
+      button.disabled = false;
+      button.textContent = "Send message →";
+    });
+  });
+});
+e mail aisa aaya hai samne wala ka email kyun nhi dikh rha hai 
+kya chutiya lag rha kuch smjh hi nhi aaiega kisne bheja hai kya uska email hai or ye sab neet and clean chahie
+?
+aise aa rhi h
+Pasted text(20260823-194153).txt
+Document
+Pasted text(20260823-195307).txt
+Document
+Pasted text(20260823-195659).txt
+Document
+Pasted text(20260823-195823).txt
+Document
+Pasted text(20260823-200003).txt
+Document
+Pasted text(20260823-200258).txt
+Document
+Pasted text(20260823-200414).txt
+Document
+Pasted text(20260823-200609).txt
+Document
+Pasted text(20260823-200718).txt
+Document
+
+Done bhai 🔥 blog-portfolio.html bhi complete update ho gaya.
+
+✅ TechArticle schema enhanced
+✅ Breadcrumb schema
+✅ Portfolio-specific SEO keywords
+✅ articleSection + wordCount
+✅ Previous / Next navigation
+✅ Related Articles
+✅ React / JavaScript / E-Commerce internal links
+✅ blogRead.js added
+✅ Navigation accessibility improved
+✅ Existing article content/design untouched.
+
+Current file ko replace karo:
+
+Download updated blog-portfolio.html
+
+Ab 8 articles ka main SEO setup complete ho gaya. Next logical step: poori blog system ka final audit — links, sitemap, robots.txt, schema aur Google indexing ke liye jo kuch missing hai, sab check karenge. 
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <title>I Don't Want a Pretty Portfolio | Prince Tiwari</title>
+
+
+  <meta name="description" content="A developer portfolio should be more than a pretty website. Learn how projects, proof of work, technical details, performance, content and personal branding can turn a portfolio into a hiring asset.">
+
+
+  <meta name="keywords" content="Developer Portfolio, Web Developer Portfolio, Full Stack Developer Portfolio, Personal Branding, Portfolio Website, Developer Career, React Portfolio, Java Developer, Freelance Developer, Prince Tiwari">
+
+
+  <meta name="author" content="Prince Tiwari">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="language" content="English">
+  <meta name="theme-color" content="#F3F1EA">
+
+
+  <link rel="canonical" href="https://princetiwari.in/blog-portfolio.html">
+
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Prince Tiwari">
+  <meta property="og:title" content="I Don't Want a Pretty Portfolio">
+  <meta property="og:description" content="A portfolio should do more than look impressive. It should give people evidence that you can actually build the things you claim.">
+  <meta property="og:url" content="https://princetiwari.in/blog-portfolio.html">
+  <meta property="og:image" content="https://princetiwari.in/profile.jpg">
+
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="I Don't Want a Pretty Portfolio">
+  <meta name="twitter:description" content="Why a developer portfolio should focus on proof of work, clarity, technical depth and trust instead of visuals alone.">
+  <meta name="twitter:image" content="https://princetiwari.in/profile.jpg">
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+blog-portfolio.html
+HTML
+next
+
+Next 🔥
+
+Ab final Blog SEO audit karte hain. Isme hum:
+
+sitemap.xml
+robots.txt
+Saare 8 blog URLs
+Internal links / broken links
+Canonical URLs
+Schema consistency
+blog.html → articles → related articles linking
+Google indexing ke liye final structure
+
+check karenge.
+
+Pehle sitemap.xml aur robots.txt ki current files upload kar do (agar bani hui hain). Agar nahi bani, bas bata dena—main dono full files bana dunga.
+
+sitemap.xml : <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://princetiwari.in/</loc>
@@ -6,4 +898,179 @@
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+</urlset> robots.txt : User-agent: *
+Allow: /
+
+Sitemap: https://princetiwari.in/sitemap.xml
+
+Haan, tumhara current sitemap.xml sirf homepage ko include kar raha tha. Blog ke 8 articles + baaki important pages missing the.
+
+Maine full updated files bana diye:
+
+1. sitemap.xml
+
+Isme total 15 important URLs hain:
+
+Homepage
+About
+Stack
+Projects
+Education
+Blog
+Contact
+8 blog articles
+
+Download updated sitemap.xml
+
+2. robots.txt
+
+Tumhara robots already basically correct tha, usme unnecessary changes nahi kiye.
+
+Download robots.txt
+
+Ab kya karna hai
+
+Apne hosting/root folder me:
+
+sitemap.xml
+robots.txt
+
+dono ko root level par rakho:
+
+/
+├── index.html
+├── about.html
+├── blog.html
+├── blogRead.html
+├── blog-react.html
+├── blog-performance.html
+├── blog-deployment.html
+├── blog-database.html
+├── blog-javascript.html
+├── blog-java.html
+├── blog-portfolio.html
+├── sitemap.xml
+├── robots.txt
+└── ...
+
+Uske baad next step Google Search Console hoga — sitemap submit + indexing request. 
+
+sitemap.xml
+Code
+robots.txt
+Document
+
+Library
+/
+sitemap.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://princetiwari.in/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://princetiwari.in/about.html</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://princetiwari.in/stack.html</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://princetiwari.in/projects.html</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://princetiwari.in/education.html</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://princetiwari.in/blog.html</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://princetiwari.in/contact.html</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog Articles -->
+
+  <url>
+    <loc>https://princetiwari.in/blogRead.html</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://princetiwari.in/blog-react.html</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://princetiwari.in/blog-performance.html</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://princetiwari.in/blog-deployment.html</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://princetiwari.in/blog-database.html</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://princetiwari.in/blog-javascript.html</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://princetiwari.in/blog-java.html</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://princetiwari.in/blog-portfolio.html</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>

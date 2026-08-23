@@ -142,6 +142,1493 @@
 
 </head>
 
+<body class="article-page">
+
+<header class="site">
+
+  <div class="nav">
+
+    <a
+      class="brand"
+      href="index.html"
+    >
+
+      <span class="badge">
+
+        <img
+          src="Profile.webp"
+          alt="Prince Tiwari"
+        >
+
+      </span>
+
+      PRINCE TIWARI
+
+    </a>
+
+    <button
+      class="nav-toggle"
+      id="navToggle"
+      aria-label="Toggle navigation"
+      aria-expanded="false"
+    >
+
+      <span></span>
+      <span></span>
+      <span></span>
+
+    </button>
+
+    <nav
+      class="links"
+      id="navLinks"
+    >
+
+      <a href="about.html">
+        About
+      </a>
+
+      <a href="stack.html">
+        Stack
+      </a>
+
+      <a href="projects.html">
+        Projects
+      </a>
+
+      <a href="education.html">
+        Education
+      </a>
+
+      <a
+        href="blog.html"
+        aria-current="page"
+      >
+        Blog
+      </a>
+
+      <a href="contact.html">
+        Contact
+      </a>
+
+    </nav>
+
+  </div>
+
+</header>
+
+<main>
+
+  <section class="article-hero">
+
+    <div class="article-wrap">
+
+      <a
+        class="article-back"
+        href="blog.html"
+      >
+        ← Back to engineering journal
+      </a>
+
+      <div class="article-label">
+        CASE FILE / 01 · E-COMMERCE
+      </div>
+
+      <h1>
+        What Building an
+        <span>E-Commerce App Taught Me.</span>
+      </h1>
+
+      <p class="article-lead">
+
+        Building an e-commerce application looked simple at first:
+        products, cart, login and checkout.
+
+        Then every feature started interacting with every other feature.
+
+      </p>
+
+      <div class="article-meta">
+
+        <div>
+          <span>AUTHOR</span>
+          <strong>Prince Tiwari</strong>
+        </div>
+
+        <div>
+          <span>PROJECT</span>
+          <strong>PrinceStore</strong>
+        </div>
+
+        <div>
+          <span>READ TIME</span>
+          <strong>10 min</strong>
+        </div>
+
+        <div>
+          <span>STACK</span>
+          <strong>React · Node · MySQL</strong>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="article-body-section">
+
+    <div class="article-layout">
+
+      <aside class="article-sidebar">
+
+        <div class="article-index">
+
+          <span class="article-index-title">
+            ON THIS PAGE
+          </span>
+
+          <a href="#idea">
+            01 — The idea
+          </a>
+
+          <a href="#architecture">
+            02 — Architecture
+          </a>
+
+          <a href="#auth">
+            03 — Authentication
+          </a>
+
+          <a href="#products">
+            04 — Products
+          </a>
+
+          <a href="#cart">
+            05 — Cart
+          </a>
+
+          <a href="#wishlist">
+            06 — Wishlist
+          </a>
+
+          <a href="#orders">
+            07 — Orders
+          </a>
+
+          <a href="#admin">
+            08 — Admin
+          </a>
+
+          <a href="#problems">
+            09 — Problems
+          </a>
+
+          <a href="#lessons">
+            10 — Lessons
+          </a>
+
+          <a href="#final">
+            11 — Final thought
+          </a>
+
+        </div>
+
+      </aside>
+
+      <article class="article-content">
+
+        <div class="project-strip">
+
+          <div>
+            <span>PROJECT</span>
+            <strong>PrinceStore</strong>
+          </div>
+
+          <div>
+            <span>FRONTEND</span>
+            <strong>React + Vite</strong>
+          </div>
+
+          <div>
+            <span>BACKEND</span>
+            <strong>Node + Express</strong>
+          </div>
+
+          <div>
+            <span>DATABASE</span>
+            <strong>MySQL</strong>
+          </div>
+
+          <div>
+            <span>STYLING</span>
+            <strong>Bootstrap</strong>
+          </div>
+
+          <a
+            href="https://ecommerce-frontend-rust-seven.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Live Project →
+          </a>
+
+        </div>
+
+        <p class="article-opening">
+
+          An e-commerce application is not really a shopping cart project.
+
+          It is a state-management, authentication, database,
+          API and business-logic project disguised as a shopping website.
+
+        </p>
+
+        <p>
+
+          When I started building PrinceStore, I initially thought about
+          the interface.
+
+          Product cards.
+
+          Navbar.
+
+          Hero section.
+
+          Cart.
+
+          Checkout.
+
+        </p>
+
+        <p>
+
+          But once the application started behaving like a real product,
+          the difficult questions appeared.
+
+        </p>
+
+        <p>
+
+          What happens when a user logs out?
+
+          What happens to the cart?
+
+          What happens when a product is removed?
+
+          What happens when an order is created?
+
+        </p>
+
+        <div class="article-note">
+
+          <span class="note-label">
+            FIELD NOTE 001
+          </span>
+
+          <p>
+
+            Building the interface is only one part of building
+            an application.
+
+            The real complexity appears when features interact.
+
+          </p>
+
+        </div>
+
+        <section
+          id="idea"
+          class="article-section"
+        >
+
+          <span class="article-section-number">
+            01 / THE IDEA
+          </span>
+
+          <h2>
+            It started as a normal e-commerce website.
+          </h2>
+
+          <p>
+
+            The goal was simple:
+
+            create a complete shopping experience where users could
+            browse products, authenticate, manage a cart, maintain a
+            wishlist and place orders.
+
+          </p>
+
+          <p>
+
+            But I didn't want another static shopping page.
+
+          </p>
+
+          <p>
+
+            I wanted the application to behave like an actual product.
+
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>PRODUCT FLOW</span>
+              <span>PRINCESTORE</span>
+            </div>
+
+            <pre><code>User
+ ↓
+Register / Login
+ ↓
+Browse Products
+ ↓
+Product Details
+ ↓
+Cart
+ ↓
+Wishlist
+ ↓
+Checkout
+ ↓
+Order
+ ↓
+Order Success</code></pre>
+
+          </div>
+
+        </section>
+
+        <section
+          id="architecture"
+          class="article-section"
+        >
+
+          <span class="article-section-number">
+            02 / ARCHITECTURE
+          </span>
+
+          <h2>
+            The UI was only the beginning.
+          </h2>
+
+          <p>
+
+            The application needed multiple layers.
+
+          </p>
+
+          <div class="architecture-diagram">
+
+            <div class="architecture-node frontend-node">
+
+              <span>
+                01 / CLIENT
+              </span>
+
+              <strong>
+                React
+              </strong>
+
+              <small>
+                Vite · Components · Context
+              </small>
+
+            </div>
+
+            <div class="architecture-arrow">
+              →
+            </div>
+
+            <div class="architecture-node backend-node">
+
+              <span>
+                02 / SERVER
+              </span>
+
+              <strong>
+                Node + Express
+              </strong>
+
+              <small>
+                REST API · Auth · Orders
+              </small>
+
+            </div>
+
+            <div class="architecture-arrow">
+              →
+            </div>
+
+            <div class="architecture-node database-node">
+
+              <span>
+                03 / DATA
+              </span>
+
+              <strong>
+                MySQL
+              </strong>
+
+              <small>
+                Users · Products · Orders
+              </small>
+
+            </div>
+
+          </div>
+
+          <p>
+
+            The frontend handled the user experience.
+
+            The backend handled business logic and API requests.
+
+            MySQL handled persistent application data.
+
+          </p>
+
+          <p>
+
+            Keeping those responsibilities separated made the application
+            easier to reason about.
+
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>REQUEST FLOW</span>
+              <span>FULL STACK</span>
+            </div>
+
+            <pre><code>React
+  ↓
+Axios
+  ↓
+Express Route
+  ↓
+Controller / Logic
+  ↓
+MySQL
+  ↓
+JSON Response
+  ↓
+React State
+  ↓
+UI Update</code></pre>
+
+          </div>
+
+        </section>
+
+        <section
+          id="auth"
+          class="article-section"
+        >
+
+          <span class="article-section-number">
+            03 / AUTHENTICATION
+          </span>
+
+          <h2>
+            Login is not just a form.
+          </h2>
+
+          <p>
+
+            A login screen looks simple.
+
+            Email.
+
+            Password.
+
+            Button.
+
+          </p>
+
+          <p>
+
+            But authentication creates application state.
+
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>AUTH FLOW</span>
+              <span>USER</span>
+            </div>
+
+            <pre><code>Login Form
+    ↓
+POST /api/auth/login
+    ↓
+Backend Validation
+    ↓
+Database Check
+    ↓
+Authentication Result
+    ↓
+Frontend State
+    ↓
+Authenticated User</code></pre>
+
+          </div>
+
+          <p>
+
+            Once authentication exists, almost every other feature needs
+            to understand who the current user is.
+
+          </p>
+
+          <p>
+
+            Cart.
+
+            Wishlist.
+
+            Orders.
+
+            Profile.
+
+            Logout.
+
+          </p>
+
+          <p>
+
+            That is why authentication is an application-wide concern,
+            not just a login-page feature.
+
+          </p>
+
+        </section>
+
+        <section
+          id="products"
+          class="article-section"
+        >
+
+          <span class="article-section-number">
+            04 / PRODUCTS
+          </span>
+
+          <h2>
+            Products are the center of the shopping experience.
+          </h2>
+
+          <p>
+
+            The product system needed to support more than displaying
+            a name and price.
+
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>PRODUCT MODEL</span>
+              <span>MYSQL</span>
+            </div>
+
+            <pre><code>products
+──────────────
+id
+name
+description
+price
+image
+category
+stock
+created_at</code></pre>
+
+          </div>
+
+          <p>
+
+            The frontend could then request the products through an API.
+
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>API</span>
+              <span>GET</span>
+            </div>
+
+            <pre><code>GET /api/products</code></pre>
+
+          </div>
+
+          <p>
+
+            That separation meant the UI didn't need to know how the
+            database stored the products.
+
+          </p>
+
+        </section>
+
+        <section
+          id="cart"
+          class="article-section"
+        >
+
+          <span class="article-section-number">
+            05 / CART
+          </span>
+
+          <h2>
+            The cart exposed the real state-management problem.
+          </h2>
+
+          <p>
+
+            A cart seems simple until multiple pages need access to it.
+
+          </p>
+
+          <p>
+
+            Product page adds an item.
+
+            Navbar shows cart count.
+
+            Cart page changes quantity.
+
+            Checkout reads cart contents.
+
+          </p>
+
+          <p>
+
+            Suddenly several components need access to the same state.
+
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>SHARED STATE</span>
+              <span>REACT</span>
+            </div>
+
+            <pre><code>CartContext
+     │
+     ├── Navbar
+     │
+     ├── ProductCard
+     │
+     ├── ProductDetails
+     │
+     ├── Cart
+     │
+     └── Checkout</code></pre>
+
+          </div>
+
+          <p>
+
+            This is where a shared context became useful.
+
+          </p>
+
+          <p>
+
+            Instead of passing cart data through multiple levels of
+            components, the application could expose cart operations
+            through a common context.
+
+          </p>
+
+        </section>
+
+        <section
+          id="wishlist"
+          class="article-section"
+        >
+
+          <span class="article-section-number">
+            06 / WISHLIST
+          </span>
+
+          <h2>
+            Then another state system appeared.
+          </h2>
+
+          <p>
+
+            Wishlist functionality looked similar to the cart,
+            but it represented a different concept.
+
+          </p>
+
+          <p>
+
+            A cart means:
+
+            "I intend to purchase this."
+
+          </p>
+
+          <p>
+
+            A wishlist means:
+
+            "I want to remember this."
+
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>APPLICATION STATE</span>
+              <span>CONTEXTS</span>
+            </div>
+
+            <pre><code>Application
+    │
+    ├── AuthContext
+    │
+    ├── CartContext
+    │
+    ├── WishlistContext
+    │
+    └── OrderContext</code></pre>
+
+          </div>
+
+          <p>
+
+            Separating these responsibilities kept the application logic
+            easier to understand.
+
+          </p>
+
+        </section>
+
+        <section
+          id="orders"
+          class="article-section"
+        >
+
+          <span class="article-section-number">
+            07 / ORDERS
+          </span>
+
+          <h2>
+            Checkout is where everything finally meets.
+          </h2>
+
+          <p>
+
+            Checkout was one of the most important parts of the application
+            because it connected several systems.
+
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>CHECKOUT FLOW</span>
+              <span>SYSTEM</span>
+            </div>
+
+            <pre><code>Authenticated User
+        ↓
+Cart
+        ↓
+Address
+        ↓
+Order Data
+        ↓
+POST /api/orders
+        ↓
+Backend
+        ↓
+Database
+        ↓
+Order Created
+        ↓
+Success Page</code></pre>
+
+          </div>
+
+          <p>
+
+            This taught me something important:
+
+            features should not be designed independently when they
+            ultimately participate in the same business flow.
+
+          </p>
+
+        </section>
+
+        <section
+          id="admin"
+          class="article-section"
+        >
+
+          <span class="article-section-number">
+            08 / ADMIN
+          </span>
+
+          <h2>
+            Someone has to control the catalog.
+          </h2>
+
+          <p>
+
+            A real store cannot depend on manually editing database rows
+            every time a product changes.
+
+          </p>
+
+          <p>
+
+            That introduced an admin side.
+
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>ADMIN OPERATIONS</span>
+              <span>CRUD</span>
+            </div>
+
+            <pre><code>Create Product
+       ↓
+Read Products
+       ↓
+Update Product
+       ↓
+Delete Product</code></pre>
+
+          </div>
+
+          <p>
+
+            This was also a useful lesson in authorization.
+
+          </p>
+
+          <p>
+
+            Authentication answers:
+
+            "Who are you?"
+
+          </p>
+
+          <p>
+
+            Authorization answers:
+
+            "What are you allowed to do?"
+
+          </p>
+
+        </section>
+
+        <section
+          id="problems"
+          class="article-section"
+        >
+
+          <span class="article-section-number">
+            09 / PROBLEMS
+          </span>
+
+          <h2>
+            The bugs were more educational than the features.
+          </h2>
+
+          <div class="mistake-list">
+
+            <div>
+
+              <span>01</span>
+
+              <strong>
+                Images weren't loading
+              </strong>
+
+              <p>
+
+                The database contained product information but image
+                references were not always being stored or resolved
+                correctly.
+
+              </p>
+
+            </div>
+
+            <div>
+
+              <span>02</span>
+
+              <strong>
+                Localhost stopped working
+              </strong>
+
+              <p>
+
+                Production required changing API configuration,
+                environment variables and deployment settings.
+
+              </p>
+
+            </div>
+
+            <div>
+
+              <span>03</span>
+
+              <strong>
+                State became complicated
+              </strong>
+
+              <p>
+
+                Cart, authentication, wishlist and orders all needed
+                consistent state management.
+
+              </p>
+
+            </div>
+
+            <div>
+
+              <span>04</span>
+
+              <strong>
+                The UI was not the hard part
+              </strong>
+
+              <p>
+
+                Connecting the UI to reliable backend and database
+                behavior was where most of the engineering work appeared.
+
+              </p>
+
+            </div>
+
+          </div>
+
+        </section>
+
+        <section
+          id="lessons"
+          class="article-section"
+        >
+
+          <span class="article-section-number">
+            10 / LESSONS
+          </span>
+
+          <h2>
+            The biggest lesson was architecture.
+          </h2>
+
+          <p>
+
+            Before this project, it was easy to think of features as
+            isolated screens.
+
+          </p>
+
+          <p>
+
+            Login.
+
+            Cart.
+
+            Products.
+
+            Checkout.
+
+          </p>
+
+          <p>
+
+            Building the entire flow changed that.
+
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>THINKING IN SYSTEMS</span>
+              <span>FULL STACK</span>
+            </div>
+
+            <pre><code>UI
+ ↓
+State
+ ↓
+API
+ ↓
+Business Logic
+ ↓
+Database
+ ↓
+Persistent Data</code></pre>
+
+          </div>
+
+          <p>
+
+            Every layer has a responsibility.
+
+            Every layer can fail.
+
+            And every layer needs to communicate clearly with the next one.
+
+          </p>
+
+          <p>
+
+            That is much closer to real software engineering than simply
+            building pages.
+
+          </p>
+
+        </section>
+
+        <section
+          id="final"
+          class="article-section"
+        >
+
+          <span class="article-section-number">
+            11 / FINAL THOUGHT
+          </span>
+
+          <h2>
+            The project became bigger than the shopping website.
+          </h2>
+
+          <p>
+
+            I started with the idea of building an e-commerce website.
+
+          </p>
+
+          <p>
+
+            I ended up learning about:
+
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>WHAT I LEARNED</span>
+              <span>ENGINEERING</span>
+            </div>
+
+            <pre><code>React
+State Management
+Authentication
+REST APIs
+Express
+MySQL
+Database Design
+CRUD
+Authorization
+Deployment
+Debugging
+Production Problems</code></pre>
+
+          </div>
+
+          <p>
+
+            The most valuable part wasn't the final UI.
+
+          </p>
+
+          <p>
+
+            It was understanding how all the pieces communicate.
+
+          </p>
+
+          <p>
+
+            A real application is not a collection of pages.
+
+            It is a system.
+
+          </p>
+
+          <div class="final-statement">
+
+            <span>
+              FIELD NOTE / 001
+            </span>
+
+            <strong>
+
+              Don't just build
+              <br>
+              another project.
+              <br>
+              Build something
+              <br>
+              that teaches you.
+
+            </strong>
+
+          </div>
+
+        </section>
+
+        <div class="article-author">
+
+          <div class="author-avatar">
+
+            <img
+              src="Profile.webp"
+              alt="Prince Tiwari"
+            >
+
+          </div>
+
+          <div>
+
+            <span>
+              WRITTEN BY
+            </span>
+
+            <strong>
+              Prince Tiwari
+            </strong>
+
+            <p>
+
+              Full Stack Developer focused on React, Node.js, Java,
+              databases and practical software engineering.
+
+            </p>
+
+          </div>
+
+        </div>
+
+        <div class="article-navigation">
+
+          <a href="blog-portfolio.html">
+
+            <span>
+              PREVIOUS ARTICLE
+            </span>
+
+            ← I Don't Want a Pretty Portfolio
+
+          </a>
+
+          <a href="blog.html">
+
+            <span>
+              ALL ARTICLES
+            </span>
+
+            Back to Engineering Journal →
+
+          </a>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </section>
+
+  <section class="blog-section">
+
+    <div class="blog-wrap">
+
+      <div class="blog-cta blog-reveal">
+
+        <div>
+
+          <h2>
+            Have something
+            <br>
+            worth building?
+          </h2>
+
+          <p>
+
+            Need a developer or want to discuss an interesting project?
+            Let's build something useful.
+
+          </p>
+
+        </div>
+
+        <a
+          class="blog-btn"
+          href="contact.html"
+        >
+          Contact Prince →
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+
+  <div class="wrap">
+
+    <div class="contact-grid">
+
+      <div>
+
+        <h2>
+          Let's build
+          <br>
+          something.
+        </h2>
+
+        <p
+          style="
+            color:var(--ink-dim);
+            margin-top:16px;
+            max-width:40ch;
+          "
+        >
+
+          Open to full-stack developer roles and freelance MERN work.
+          Based in Noida, open to remote.
+
+        </p>
+
+      </div>
+
+      <div class="contact-list">
+
+        <a href="mailto:tiwariprince340@gmail.com">
+
+          <span class="k">
+            Email
+          </span>
+
+          tiwariprince340@gmail.com
+
+        </a>
+
+        <a href="tel:+916203811578">
+
+          <span class="k">
+            Phone
+          </span>
+
+          +91 62038 11578
+
+        </a>
+
+        <a
+          href="https://linkedin.com/in/princetiwariprincetiwari/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+
+          <span class="k">
+            LinkedIn
+          </span>
+
+          Prince Tiwari
+
+        </a>
+
+        <a
+          href="https://github.com/PRINCETIWARI360"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+
+          <span class="k">
+            GitHub
+          </span>
+
+          PRINCETIWARI360
+
+        </a>
+
+        <a
+          href="https://instagram.com/maiprrincehoon"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+
+          <span class="k">
+            Instagram
+          </span>
+
+          @maiprrincehoon
+
+        </a>
+
+        <a href="index.html">
+
+          <span class="k">
+            Base
+          </span>
+
+          Noida, Uttar Pradesh, India
+
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="fine">
+
+      <span>
+
+        ©
+        <span id="year"></span>
+        Prince Tiwari
+
+      </span>
+
+    </div>
+
+  </div>
+
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/blog.js"></script>
+<script src="js/blogRead.js"></script>
+
+</body>
+
+</html>
+  <meta
+    property="og:description"
+    content="A practical case study about building PrinceStore with React, Node.js, Express and MySQL."
+  >
+
+  <meta
+    property="og:url"
+    content="https://princetiwari.in/blogRead.html"
+  >
+
+  <meta
+    property="og:image"
+    content="https://princetiwari.in/profile.jpg"
+  >
+
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  >
+
+  <meta
+    name="twitter:title"
+    content="What Building an E-Commerce App Taught Me"
+  >
+
+  <meta
+    name="twitter:description"
+    content="A practical case study about building PrinceStore."
+  >
+
+  <meta
+    name="twitter:image"
+    content="https://princetiwari.in/profile.jpg"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="css/blog.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="css/blogRead.css"
+  >
+
+  <link
+    rel="icon"
+    type="image/png"
+    href="Pfavicon.png"
+  >
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "What Building an E-Commerce App Taught Me",
+    "description": "A practical case study about building PrinceStore using React, Node.js, Express and MySQL.",
+    "image": "https://princetiwari.in/profile.jpg",
+    "author": {
+      "@type": "Person",
+      "name": "Prince Tiwari",
+      "url": "https://princetiwari.in/"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Prince Tiwari"
+    },
+    "datePublished": "2026-08-24",
+    "dateModified": "2026-08-24",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://princetiwari.in/blogRead.html"
+    },
+    "keywords": [
+      "E-Commerce",
+      "React",
+      "Node.js",
+      "Express",
+      "MySQL",
+      "Full Stack Development"
+    ]
+  }
+  </script>
+
+</head>
+
 
 <body class="article-page">
 

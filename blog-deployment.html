@@ -1,1 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>From localhost to the Internet | Prince Tiwari</title>
+
+  <meta name="description" content="What actually happens when a web application moves from localhost to production: environment variables, APIs, databases, CORS, hosting, deployment and debugging.">
+
+  <meta name="keywords" content="Web Deployment, Node.js Deployment, React Deployment, Render, Vercel, Environment Variables, CORS, Production Deployment, Full Stack Development, Prince Tiwari">
+
+  <meta name="author" content="Prince Tiwari">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="language" content="English">
+  <meta name="theme-color" content="#F3F1EA">
+
+  <link rel="canonical" href="https://princetiwari.in/blog-deployment.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Prince Tiwari">
+  <meta property="og:title" content="From localhost to the Internet">
+  <meta property="og:description" content="The practical problems that appear when a full-stack application moves from local development to production.">
+  <meta property="og:url" content="https://princetiwari.in/blog-deployment.html">
+  <meta property="og:image" content="https://princetiwari.in/profile.jpg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="From localhost to the Internet">
+  <meta name="twitter:description" content="A practical guide to deploying full-stack applications and debugging production issues.">
+  <meta name="twitter:image" content="https://princetiwari.in/profile.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/blog.css">
+  <link rel="stylesheet" href="css/blogRead.css">
+
+  <link rel="icon" type="image/png" href="Pfavicon.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "From localhost to the Internet",
+    "description": "A practical guide to deploying full-stack web applications from local development to production.",
+    "image": "https://princetiwari.in/profile.jpg",
+    "author": {
+      "@type": "Person",
+      "name": "Prince Tiwari",
+      "url": "https://princetiwari.in/"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Prince Tiwari"
+    },
+    "datePublished": "2026-08-24",
+    "dateModified": "2026-08-24",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://princetiwari.in/blog-deployment.html"
+    },
+    "keywords": [
+      "Web Deployment",
+      "Node.js",
+      "React",
+      "Production",
+      "CORS"
+    ]
+  }
+  </script>
+</head>
+
+<body class="article-page">
+
+<header class="site">
+  <div class="nav">
+
+    <a class="brand" href="index.html">
+      <span class="badge">
+        <img src="Profile.webp" alt="Prince Tiwari">
+      </span>
+      PRINCE TIWARI
+    </a>
+
+    <button
+      class="nav-toggle"
+      id="navToggle"
+      aria-label="Toggle navigation"
+      aria-expanded="false"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="links" id="navLinks">
+      <a href="about.html">About</a>
+      <a href="stack.html">Stack</a>
+      <a href="projects.html">Projects</a>
+      <a href="education.html">Education</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+  </div>
+</header>
+
+
+<main>
+
+  <section class="article-hero">
+
+    <div class="article-wrap">
+
+      <a class="article-back" href="blog.html">
+        ← Back to engineering journal
+      </a>
+
+      <div class="article-label">
+        CASE FILE / 04 · DEPLOYMENT
+      </div>
+
+      <h1>
+        From localhost
+        <span>to the Internet.</span>
+      </h1>
+
+      <p class="article-lead">
+        The moment your application leaves localhost, a different set of
+        problems begins: environment variables, CORS, production APIs,
+        databases, builds, hosting and configuration.
+      </p>
+
+      <div class="article-meta">
+
+        <div>
+          <span>AUTHOR</span>
+          <strong>Prince Tiwari</strong>
+        </div>
+
+        <div>
+          <span>PUBLISHED</span>
+          <strong>24 Aug 2026</strong>
+        </div>
+
+        <div>
+          <span>READ TIME</span>
+          <strong>8 min</strong>
+        </div>
+
+        <div>
+          <span>FIELD</span>
+          <strong>Deployment Engineering</strong>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="article-body-section">
+
+    <div class="article-layout">
+
+      <aside class="article-sidebar">
+
+        <div class="article-index">
+
+          <span class="article-index-title">
+            ON THIS PAGE
+          </span>
+
+          <a href="#localhost">01 — Localhost</a>
+          <a href="#architecture">02 — Production architecture</a>
+          <a href="#environment">03 — Environment variables</a>
+          <a href="#cors">04 — CORS</a>
+          <a href="#database">05 — Database</a>
+          <a href="#frontend">06 — Frontend</a>
+          <a href="#debugging">07 — Debugging</a>
+          <a href="#lessons">08 — Lessons</a>
+          <a href="#final">09 — Final thought</a>
+
+        </div>
+
+      </aside>
+
+
+      <article class="article-content">
+
+        <p class="article-opening">
+          “It works on my machine” is not a deployment strategy.
+        </p>
+
+        <p>
+          Local development is comfortable.
+        </p>
+
+        <p>
+          The frontend talks to localhost. The backend runs on your laptop.
+          The database is sitting right there. Environment variables are
+          already configured. You know exactly where every file is.
+        </p>
+
+        <p>
+          Then you deploy.
+        </p>
+
+        <p>
+          Suddenly the frontend cannot reach the backend.
+          The database connection fails.
+          An environment variable is undefined.
+          A request works in Postman but fails in the browser.
+        </p>
+
+        <p>
+          Nothing about the application changed conceptually.
+          The environment did.
+        </p>
+
+
+        <div class="article-note">
+
+          <span class="note-label">
+            FIELD NOTE 004
+          </span>
+
+          <p>
+            Deployment does not magically fix an application.
+            It exposes assumptions that were invisible during local development.
+          </p>
+
+        </div>
+
+
+        <section id="localhost" class="article-section">
+
+          <span class="article-section-number">
+            01 / LOCALHOST
+          </span>
+
+          <h2>
+            Local development hides a lot.
+          </h2>
+
+          <p>
+            Imagine a React frontend running on one local port and an
+            Express backend running on another.
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>LOCAL DEVELOPMENT</span>
+              <span>ARCHITECTURE</span>
+            </div>
+
+            <pre><code>Browser
+   │
+   ├── localhost:5173
+   │       ↓
+   │    React
+   │
+   └── localhost:5000
+           ↓
+        Express
+           ↓
+         MySQL</code></pre>
+
+          </div>
+
+          <p>
+            Everything is close together. You control the entire environment.
+          </p>
+
+          <p>
+            Production is different because each part can live on a
+            completely different server or platform.
+          </p>
+
+        </section>
+
+
+        <section id="architecture" class="article-section">
+
+          <span class="article-section-number">
+            02 / PRODUCTION ARCHITECTURE
+          </span>
+
+          <h2>
+            Production turns one project into several systems.
+          </h2>
+
+          <p>
+            A typical deployed full-stack application may look more like this:
+          </p>
+
+          <div class="architecture-diagram">
+
+            <div>
+              <span>01</span>
+              <strong>USER</strong>
+              <small>Browser</small>
+            </div>
+
+            <div class="architecture-arrow">
+              →
+            </div>
+
+            <div>
+              <span>02</span>
+              <strong>FRONTEND</strong>
+              <small>React / Vercel</small>
+            </div>
+
+            <div class="architecture-arrow">
+              →
+            </div>
+
+            <div>
+              <span>03</span>
+              <strong>BACKEND</strong>
+              <small>Node / API</small>
+            </div>
+
+          </div>
+
+          <p>
+            The backend then communicates with the database separately.
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>PRODUCTION FLOW</span>
+              <span>FULL STACK</span>
+            </div>
+
+            <pre><code>User
+ ↓
+React Frontend
+ ↓
+HTTPS API Request
+ ↓
+Node + Express
+ ↓
+Database
+ ↓
+JSON Response
+ ↓
+React UI</code></pre>
+
+          </div>
+
+          <p>
+            Once you understand this separation, production errors become
+            easier to reason about.
+          </p>
+
+        </section>
+
+
+        <section id="environment" class="article-section">
+
+          <span class="article-section-number">
+            03 / ENVIRONMENT VARIABLES
+          </span>
+
+          <h2>
+            Your secrets do not belong in your source code.
+          </h2>
+
+          <p>
+            Local development often uses environment variables for things
+            such as database credentials, API keys and service configuration.
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>EXAMPLE</span>
+              <span>.ENV</span>
+            </div>
+
+            <pre><code>DB_HOST=your-host
+DB_USER=your-user
+DB_PASSWORD=your-password
+DB_NAME=your-database</code></pre>
+
+          </div>
+
+          <p>
+            The important idea is that production needs its own environment
+            configuration.
+          </p>
+
+          <p>
+            A variable existing in your local `.env` file does not mean it
+            automatically exists on your hosting platform.
+          </p>
+
+          <div class="article-highlight">
+
+            <span>
+              REMEMBER
+            </span>
+
+            <strong>
+              Local environment variables and production environment
+              variables are separate configurations.
+            </strong>
+
+          </div>
+
+        </section>
+
+
+        <section id="cors" class="article-section">
+
+          <span class="article-section-number">
+            04 / CORS
+          </span>
+
+          <h2>
+            The browser suddenly becomes strict.
+          </h2>
+
+          <p>
+            One of the most confusing deployment problems for beginners is
+            CORS.
+          </p>
+
+          <p>
+            Locally, your frontend and backend may be running in a setup
+            where everything appears to work.
+          </p>
+
+          <p>
+            After deployment, the frontend and backend often have different
+            origins.
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>DIFFERENT ORIGINS</span>
+              <span>PRODUCTION</span>
+            </div>
+
+            <pre><code>Frontend
+https://your-frontend.com
+
+Backend
+https://your-api.com</code></pre>
+
+          </div>
+
+          <p>
+            The backend therefore needs to explicitly allow the frontend
+            origin when appropriate.
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>EXPRESS</span>
+              <span>CORS</span>
+            </div>
+
+            <pre><code>const cors = require("cors");
+
+app.use(cors({
+  origin: "https://your-frontend.com"
+}));</code></pre>
+
+          </div>
+
+          <p>
+            CORS is not a problem with React or Express themselves.
+            It is a browser security mechanism that becomes visible when
+            applications live on different origins.
+          </p>
+
+        </section>
+
+
+        <section id="database" class="article-section">
+
+          <span class="article-section-number">
+            05 / DATABASE
+          </span>
+
+          <h2>
+            The database needs to exist somewhere you don't control locally.
+          </h2>
+
+          <p>
+            During development, connecting to MySQL on your own computer
+            is straightforward.
+          </p>
+
+          <p>
+            A deployed backend cannot connect to your laptop's localhost
+            database.
+          </p>
+
+          <p>
+            The production backend needs access to a database that is
+            reachable from the deployed environment.
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>THE DIFFERENCE</span>
+              <span>DATABASE</span>
+            </div>
+
+            <pre><code>LOCAL
+
+Node
+ ↓
+localhost
+ ↓
+MySQL
+
+
+PRODUCTION
+
+Node Server
+ ↓
+Database Host
+ ↓
+MySQL</code></pre>
+
+          </div>
+
+          <p>
+            This sounds obvious after you understand it.
+            It is surprisingly easy to forget while moving a project online.
+          </p>
+
+        </section>
+
+
+        <section id="frontend" class="article-section">
+
+          <span class="article-section-number">
+            06 / FRONTEND
+          </span>
+
+          <h2>
+            Your frontend also has a production configuration.
+          </h2>
+
+          <p>
+            One of the easiest deployment mistakes is leaving API URLs
+            pointing to localhost.
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>LOCAL</span>
+              <span>API</span>
+            </div>
+
+            <pre><code>http://localhost:5000/api/products</code></pre>
+
+          </div>
+
+          <p>
+            That URL works on your computer because your computer is running
+            the backend.
+          </p>
+
+          <p>
+            It does not work for a visitor opening your deployed website.
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>PRODUCTION</span>
+              <span>API</span>
+            </div>
+
+            <pre><code>https://your-api-domain.com/api/products</code></pre>
+
+          </div>
+
+          <p>
+            This is why production configuration should be treated as part
+            of the application rather than something you remember five
+            minutes before deployment.
+          </p>
+
+        </section>
+
+
+        <section id="debugging" class="article-section">
+
+          <span class="article-section-number">
+            07 / DEBUGGING
+          </span>
+
+          <h2>
+            Production debugging is mostly about asking better questions.
+          </h2>
+
+          <p>
+            When something breaks after deployment, randomly changing code
+            usually makes the problem harder to understand.
+          </p>
+
+          <p>
+            I prefer following the request from one end to the other.
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>DEBUGGING CHECKLIST</span>
+              <span>PRODUCTION</span>
+            </div>
+
+            <pre><code>1. Did the frontend load?
+
+2. Is the API URL correct?
+
+3. Did the browser send the request?
+
+4. Did the server receive it?
+
+5. Did the server return an error?
+
+6. Did the database query work?
+
+7. Is the response what the UI expects?</code></pre>
+
+          </div>
+
+          <p>
+            Browser developer tools are often the first place to look.
+            Server logs are the second.
+            Database logs and direct API testing can then narrow the problem
+            further.
+          </p>
+
+          <div class="article-note">
+
+            <span class="note-label">
+              DEBUGGING RULE
+            </span>
+
+            <p>
+              Do not ask “Why is it broken?” Ask “At which exact step did
+              the expected behavior stop?”
+            </p>
+
+          </div>
+
+        </section>
+
+
+        <section id="lessons" class="article-section">
+
+          <span class="article-section-number">
+            08 / LESSONS
+          </span>
+
+          <h2>
+            Deployment taught me to think about environments earlier.
+          </h2>
+
+          <p>
+            Earlier, deployment felt like the final step of a project.
+          </p>
+
+          <p>
+            Now I think about it much earlier.
+          </p>
+
+          <div class="mistake-list">
+
+            <div>
+              <span>01</span>
+
+              <strong>
+                Know where your frontend will live
+              </strong>
+
+              <p>
+                The hosting environment affects routing, build commands and
+                configuration.
+              </p>
+            </div>
+
+            <div>
+              <span>02</span>
+
+              <strong>
+                Know where your backend will live
+              </strong>
+
+              <p>
+                Server configuration, ports, environment variables and
+                logs become production concerns.
+              </p>
+            </div>
+
+            <div>
+              <span>03</span>
+
+              <strong>
+                Plan your database
+              </strong>
+
+              <p>
+                Persistent application data needs a production-ready
+                database and secure credentials.
+              </p>
+            </div>
+
+            <div>
+              <span>04</span>
+
+              <strong>
+                Test the production flow
+              </strong>
+
+              <p>
+                A successful local request does not prove that the deployed
+                system works.
+              </p>
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <section id="final" class="article-section">
+
+          <span class="article-section-number">
+            09 / FINAL THOUGHT
+          </span>
+
+          <h2>
+            Deployment is where the application meets reality.
+          </h2>
+
+          <p>
+            Localhost gives you a controlled environment.
+            Production gives you an environment you have to design for.
+          </p>
+
+          <p>
+            Different servers.
+            Different domains.
+            Different credentials.
+            Different networks.
+            Real users.
+            Real failures.
+          </p>
+
+          <p>
+            That is why deployment is not simply clicking a Deploy button.
+          </p>
+
+          <p>
+            It is the process of making sure all the pieces of your
+            application can communicate correctly outside your laptop.
+          </p>
+
+          <div class="final-statement">
+
+            <span>
+              FIELD NOTE / 004
+            </span>
+
+            <strong>
+              If it only works<br>
+              on localhost,<br>
+              you haven't<br>
+              finished building it.
+            </strong>
+
+          </div>
+
+        </section>
+
+
+        <div class="article-author">
+
+          <div class="author-avatar">
+            <img src="Profile.webp" alt="Prince Tiwari">
+          </div>
+
+          <div>
+
+            <span>
+              WRITTEN BY
+            </span>
+
+            <strong>
+              Prince Tiwari
+            </strong>
+
+            <p>
+              Full Stack Developer focused on React, Node.js, Java,
+              databases and practical software engineering.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="article-navigation">
+
+          <a href="blog-performance.html">
+            <span>
+              PREVIOUS ARTICLE
+            </span>
+            ← Your Website Isn't Slow
+          </a>
+
+          <a href="blog-database.html">
+            <span>
+              NEXT ARTICLE
+            </span>
+            The Day My Database Became the Problem →
+          </a>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <section class="blog-section">
+
+    <div class="blog-wrap">
+
+      <div class="blog-cta blog-reveal">
+
+        <div>
+
+          <h2>
+            Have something<br>
+            worth building?
+          </h2>
+
+          <p>
+            Need a developer or want to discuss an interesting project?
+            Let's build something useful.
+          </p>
+
+        </div>
+
+        <a class="blog-btn" href="contact.html">
+          Contact Prince →
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+
+  <div class="wrap">
+
+    <div class="contact-grid">
+
+      <div>
+
+        <h2>
+          Let's build
+          <br>
+          something.
+        </h2>
+
+        <p style="color:var(--ink-dim); margin-top:16px; max-width:40ch;">
+          Open to full-stack developer roles and freelance MERN work.
+          Based in Noida, open to remote.
+        </p>
+
+      </div>
+
+      <div class="contact-list">
+
+        <a href="mailto:tiwariprince340@gmail.com">
+          <span class="k">Email</span>
+          tiwariprince340@gmail.com
+        </a>
+
+        <a href="tel:+916203811578">
+          <span class="k">Phone</span>
+          +91 62038 11578
+        </a>
+
+        <a
+          href="https://linkedin.com/in/princetiwariprincetiwari/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="k">LinkedIn</span>
+          Prince Tiwari
+        </a>
+
+        <a
+          href="https://github.com/PRINCETIWARI360"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="k">GitHub</span>
+          PRINCETIWARI360
+        </a>
+
+        <a
+          href="https://instagram.com/maiprrincehoon"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="k">Instagram</span>
+          @maiprrincehoon
+        </a>
+
+        <a href="index.html">
+          <span class="k">Base</span>
+          Noida, Uttar Pradesh, India
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="fine">
+      <span>
+        © <span id="year"></span> Prince Tiwari
+      </span>
+    </div>
+
+  </div>
+
+</footer>
+
+
+<script src="js/main.js"></script>
+<script src="js/blog.js"></script>
+
+</body>
+</html>

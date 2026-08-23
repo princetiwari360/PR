@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
-
   emailjs.init({
-    publicKey: "YOUR_PUBLIC_KEY"
+    publicKey: "wapafyNkWceu3yWK6"
   });
 
   const form = document.getElementById("contact-form");
@@ -13,7 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   form.addEventListener("submit", function (event) {
-
     event.preventDefault();
 
     button.disabled = true;
@@ -26,17 +24,14 @@ document.addEventListener("DOMContentLoaded", function () {
       form
     )
     .then(function () {
-
       response.textContent = "Message sent successfully.";
 
       form.reset();
 
       button.disabled = false;
       button.textContent = "Send message →";
-
     })
     .catch(function (error) {
-
       console.error("EmailJS Error:", error);
 
       response.textContent =
@@ -44,27 +39,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
       button.disabled = false;
       button.textContent = "Send message →";
-
     });
-
   });
-
 });
-        contactForm.reset();
-
-        submitButton.disabled = false;
-        submitButton.textContent = "Send message →";
-      })
-      .catch(function (error) {
-        console.error("EmailJS Error:", error);
-
-        responseElement.textContent =
-          "Failed to send the message. Please try again.";
-
-        responseElement.style.color = "#C4501F";
-
-        submitButton.disabled = false;
-        submitButton.textContent = "Send message →";
-      });
-  });
-}

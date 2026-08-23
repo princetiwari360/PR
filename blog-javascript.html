@@ -1,1 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>JavaScript Gets Weird When You Go Deeper | Prince Tiwari</title>
+
+  <meta name="description" content="A practical deep dive into JavaScript closures, references, asynchronous execution, the event loop, promises and the concepts that become important beyond the basics.">
+
+  <meta name="keywords" content="JavaScript, JavaScript Closures, JavaScript Event Loop, JavaScript Promises, Async JavaScript, JavaScript References, JavaScript Fundamentals, Frontend Development, Prince Tiwari">
+
+  <meta name="author" content="Prince Tiwari">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="language" content="English">
+  <meta name="theme-color" content="#F3F1EA">
+
+  <link rel="canonical" href="https://princetiwari.in/blog-javascript.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Prince Tiwari">
+  <meta property="og:title" content="JavaScript Gets Weird When You Go Deeper">
+  <meta property="og:description" content="Closures, references, asynchronous execution and the event loop are where writing JavaScript starts becoming understanding JavaScript.">
+  <meta property="og:url" content="https://princetiwari.in/blog-javascript.html">
+  <meta property="og:image" content="https://princetiwari.in/profile.jpg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="JavaScript Gets Weird When You Go Deeper">
+  <meta name="twitter:description" content="A practical deep dive into the JavaScript concepts that become important beyond the basics.">
+  <meta name="twitter:image" content="https://princetiwari.in/profile.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/blog.css">
+  <link rel="stylesheet" href="css/blogRead.css">
+
+  <link rel="icon" type="image/png" href="Pfavicon.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "JavaScript Gets Weird When You Go Deeper",
+    "description": "A practical article covering JavaScript closures, references, asynchronous execution, promises and the event loop.",
+    "image": "https://princetiwari.in/profile.jpg",
+    "author": {
+      "@type": "Person",
+      "name": "Prince Tiwari",
+      "url": "https://princetiwari.in/"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Prince Tiwari"
+    },
+    "datePublished": "2026-08-24",
+    "dateModified": "2026-08-24",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://princetiwari.in/blog-javascript.html"
+    },
+    "keywords": [
+      "JavaScript",
+      "Closures",
+      "Event Loop",
+      "Promises",
+      "Async JavaScript"
+    ]
+  }
+  </script>
+</head>
+
+<body class="article-page">
+
+<header class="site">
+  <div class="nav">
+
+    <a class="brand" href="index.html">
+      <span class="badge">
+        <img src="Profile.webp" alt="Prince Tiwari">
+      </span>
+      PRINCE TIWARI
+    </a>
+
+    <button
+      class="nav-toggle"
+      id="navToggle"
+      aria-label="Toggle navigation"
+      aria-expanded="false"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="links" id="navLinks">
+      <a href="about.html">About</a>
+      <a href="stack.html">Stack</a>
+      <a href="projects.html">Projects</a>
+      <a href="education.html">Education</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+  </div>
+</header>
+
+
+<main>
+
+  <section class="article-hero">
+
+    <div class="article-wrap">
+
+      <a class="article-back" href="blog.html">
+        ← Back to engineering journal
+      </a>
+
+      <div class="article-label">
+        CASE FILE / 06 · JAVASCRIPT
+      </div>
+
+      <h1>
+        JavaScript Gets Weird
+        <span>When You Go Deeper.</span>
+      </h1>
+
+      <p class="article-lead">
+        JavaScript looks simple until references, closures, asynchronous
+        execution, promises and the event loop start behaving in ways that
+        are not obvious from the code you wrote.
+      </p>
+
+      <div class="article-meta">
+
+        <div>
+          <span>AUTHOR</span>
+          <strong>Prince Tiwari</strong>
+        </div>
+
+        <div>
+          <span>PUBLISHED</span>
+          <strong>24 Aug 2026</strong>
+        </div>
+
+        <div>
+          <span>READ TIME</span>
+          <strong>9 min</strong>
+        </div>
+
+        <div>
+          <span>FIELD</span>
+          <strong>JavaScript</strong>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="article-body-section">
+
+    <div class="article-layout">
+
+      <aside class="article-sidebar">
+
+        <div class="article-index">
+
+          <span class="article-index-title">
+            ON THIS PAGE
+          </span>
+
+          <a href="#beginning">01 — The beginning</a>
+          <a href="#references">02 — References</a>
+          <a href="#closures">03 — Closures</a>
+          <a href="#async">04 — Async</a>
+          <a href="#event-loop">05 — Event loop</a>
+          <a href="#promises">06 — Promises</a>
+          <a href="#mistakes">07 — Mistakes</a>
+          <a href="#lessons">08 — Lessons</a>
+          <a href="#final">09 — Final thought</a>
+
+        </div>
+
+      </aside>
+
+
+      <article class="article-content">
+
+        <p class="article-opening">
+          JavaScript is easy until you stop asking what the code does
+          and start asking why it behaves that way.
+        </p>
+
+        <p>
+          At first, JavaScript feels almost too friendly.
+        </p>
+
+        <p>
+          Variables hold values. Functions execute. Arrays contain data.
+          Objects contain properties.
+        </p>
+
+        <p>
+          Then one day you change an object and another variable changes too.
+        </p>
+
+        <p>
+          A function remembers a variable that should have disappeared.
+        </p>
+
+        <p>
+          A timeout does not execute when you expected it to.
+        </p>
+
+        <p>
+          A promise appears to run before something that was written
+          before it.
+        </p>
+
+        <p>
+          That is the point where JavaScript becomes interesting.
+        </p>
+
+
+        <div class="article-note">
+
+          <span class="note-label">
+            FIELD NOTE 006
+          </span>
+
+          <p>
+            JavaScript becomes much easier when you stop memorizing behavior
+            and start understanding the execution model behind it.
+          </p>
+
+        </div>
+
+
+        <section id="beginning" class="article-section">
+
+          <span class="article-section-number">
+            01 / THE BEGINNING
+          </span>
+
+          <h2>
+            Values are not always as simple as they look.
+          </h2>
+
+          <p>
+            Consider a primitive value.
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>PRIMITIVE</span>
+              <span>JAVASCRIPT</span>
+            </div>
+
+            <pre><code>let a = 10;
+let b = a;
+
+b = 20;
+
+console.log(a);
+console.log(b);</code></pre>
+
+          </div>
+
+          <p>
+            The result is straightforward because primitive values such as
+            numbers are copied as values.
+          </p>
+
+          <p>
+            Objects introduce a different mental model.
+          </p>
+
+        </section>
+
+
+        <section id="references" class="article-section">
+
+          <span class="article-section-number">
+            02 / REFERENCES
+          </span>
+
+          <h2>
+            Two variables can point to the same object.
+          </h2>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>REFERENCE</span>
+              <span>JAVASCRIPT</span>
+            </div>
+
+            <pre><code>const user = {
+  name: "Prince"
+};
+
+const anotherUser = user;
+
+anotherUser.name = "Alex";
+
+console.log(user.name);</code></pre>
+
+          </div>
+
+          <p>
+            The surprising part is that changing `anotherUser` also changes
+            what `user` sees.
+          </p>
+
+          <p>
+            The reason is not that JavaScript randomly copied the object.
+            Both variables refer to the same object.
+          </p>
+
+          <div class="article-highlight">
+
+            <span>
+              MENTAL MODEL
+            </span>
+
+            <strong>
+              Two labels can point to the same object in memory.
+            </strong>
+
+          </div>
+
+          <p>
+            Understanding this becomes extremely important when working
+            with React state, arrays, objects and immutable updates.
+          </p>
+
+        </section>
+
+
+        <section id="closures" class="article-section">
+
+          <span class="article-section-number">
+            03 / CLOSURES
+          </span>
+
+          <h2>
+            Then functions start remembering things.
+          </h2>
+
+          <p>
+            A closure is one of those concepts that sounds complicated until
+            you see it.
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>CLOSURE</span>
+              <span>JAVASCRIPT</span>
+            </div>
+
+            <pre><code>function createCounter() {
+
+  let count = 0;
+
+  return function () {
+    count++;
+    return count;
+  };
+
+}
+
+const counter = createCounter();
+
+console.log(counter());
+console.log(counter());
+console.log(counter());</code></pre>
+
+          </div>
+
+          <p>
+            The `createCounter` function has finished executing, but the
+            returned function can still access `count`.
+          </p>
+
+          <p>
+            That remembered access is the important part.
+          </p>
+
+          <p>
+            Closures appear everywhere in modern JavaScript:
+            callbacks, event handlers, timers, modules and React hooks.
+          </p>
+
+          <p>
+            Once closures make sense, many JavaScript patterns stop looking
+            like magic.
+          </p>
+
+        </section>
+
+
+        <section id="async" class="article-section">
+
+          <span class="article-section-number">
+            04 / ASYNC
+          </span>
+
+          <h2>
+            JavaScript does not simply execute everything from top to bottom.
+          </h2>
+
+          <p>
+            Consider this:
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>ASYNC</span>
+              <span>JAVASCRIPT</span>
+            </div>
+
+            <pre><code>console.log("A");
+
+setTimeout(() => {
+  console.log("B");
+}, 0);
+
+console.log("C");</code></pre>
+
+          </div>
+
+          <p>
+            The output is:
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>OUTPUT</span>
+              <span>ORDER</span>
+            </div>
+
+            <pre><code>A
+C
+B</code></pre>
+
+          </div>
+
+          <p>
+            The zero-millisecond timeout does not mean “execute immediately.”
+            It means the callback can be scheduled after the current
+            synchronous work is completed.
+          </p>
+
+        </section>
+
+
+        <section id="event-loop" class="article-section">
+
+          <span class="article-section-number">
+            05 / EVENT LOOP
+          </span>
+
+          <h2>
+            The event loop is where the weirdness starts making sense.
+          </h2>
+
+          <p>
+            JavaScript executes synchronous code using its call stack.
+            Asynchronous operations can be handled by the surrounding
+            runtime, and callbacks are scheduled to run when the relevant
+            execution conditions are met.
+          </p>
+
+          <div class="architecture-diagram">
+
+            <div>
+              <span>01</span>
+              <strong>CALL STACK</strong>
+              <small>Runs code</small>
+            </div>
+
+            <div class="architecture-arrow">
+              →
+            </div>
+
+            <div>
+              <span>02</span>
+              <strong>QUEUE</strong>
+              <small>Waits</small>
+            </div>
+
+            <div class="architecture-arrow">
+              →
+            </div>
+
+            <div>
+              <span>03</span>
+              <strong>EVENT LOOP</strong>
+              <small>Schedules</small>
+            </div>
+
+          </div>
+
+          <p>
+            The browser and JavaScript runtime provide mechanisms around the
+            language that allow timers, network requests and other
+            asynchronous operations to work without blocking the entire
+            application.
+          </p>
+
+          <p>
+            This is one of the reasons JavaScript can handle large numbers
+            of I/O-oriented operations while maintaining a responsive
+            interface.
+          </p>
+
+        </section>
+
+
+        <section id="promises" class="article-section">
+
+          <span class="article-section-number">
+            06 / PROMISES
+          </span>
+
+          <h2>
+            Promises make asynchronous results easier to compose.
+          </h2>
+
+          <p>
+            A promise represents an eventual result of an asynchronous
+            operation.
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>PROMISE</span>
+              <span>JAVASCRIPT</span>
+            </div>
+
+            <pre><code>fetch("/api/products")
+  .then(response => response.json())
+  .then(products => {
+    console.log(products);
+  })
+  .catch(error => {
+    console.error(error);
+  });</code></pre>
+
+          </div>
+
+          <p>
+            Modern JavaScript often uses `async` and `await` because it can
+            make asynchronous control flow easier to read.
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>ASYNC / AWAIT</span>
+              <span>JAVASCRIPT</span>
+            </div>
+
+            <pre><code>async function loadProducts() {
+
+  try {
+
+    const response = await fetch(
+      "/api/products"
+    );
+
+    const products = await response.json();
+
+    console.log(products);
+
+  } catch (error) {
+
+    console.error(error);
+
+  }
+
+}</code></pre>
+
+          </div>
+
+          <p>
+            The important thing is not choosing one syntax because it looks
+            modern. The important thing is understanding that the operation
+            is asynchronous and that the result is not available immediately.
+          </p>
+
+        </section>
+
+
+        <section id="mistakes" class="article-section">
+
+          <span class="article-section-number">
+            07 / MISTAKES
+          </span>
+
+          <h2>
+            The mistakes that made JavaScript finally click.
+          </h2>
+
+          <div class="mistake-list">
+
+            <div>
+              <span>01</span>
+
+              <strong>
+                Treating objects like copied values
+              </strong>
+
+              <p>
+                Understanding references prevents many unexpected mutation
+                bugs.
+              </p>
+            </div>
+
+            <div>
+              <span>02</span>
+
+              <strong>
+                Thinking async means “later”
+              </strong>
+
+              <p>
+                Asynchronous behavior depends on the runtime and scheduling
+                mechanisms, not simply an imaginary timeline.
+              </p>
+            </div>
+
+            <div>
+              <span>03</span>
+
+              <strong>
+                Ignoring closures
+              </strong>
+
+              <p>
+                Closures explain why callbacks and functions can continue
+                accessing variables from an outer scope.
+              </p>
+            </div>
+
+            <div>
+              <span>04</span>
+
+              <strong>
+                Memorizing outputs
+              </strong>
+
+              <p>
+                Memorizing console output helps with one question.
+                Understanding execution helps with the next hundred.
+              </p>
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <section id="lessons" class="article-section">
+
+          <span class="article-section-number">
+            08 / LESSONS
+          </span>
+
+          <h2>
+            JavaScript becomes easier when you build a mental model.
+          </h2>
+
+          <p>
+            I used to approach difficult JavaScript behavior by trying to
+            remember the answer.
+          </p>
+
+          <p>
+            That works until the next slightly different example appears.
+          </p>
+
+          <p>
+            A better approach is to ask:
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>QUESTIONS</span>
+              <span>MENTAL MODEL</span>
+            </div>
+
+            <pre><code>What value is this?
+
+Is this a reference?
+
+Which scope owns this variable?
+
+Is this code synchronous?
+
+When is this callback scheduled?
+
+What is currently on the call stack?</code></pre>
+
+          </div>
+
+          <p>
+            Those questions turn confusing behavior into something you can
+            reason about.
+          </p>
+
+        </section>
+
+
+        <section id="final" class="article-section">
+
+          <span class="article-section-number">
+            09 / FINAL THOUGHT
+          </span>
+
+          <h2>
+            You don't need to memorize JavaScript.
+            You need to understand it.
+          </h2>
+
+          <p>
+            The language has many details, but the deeper concepts connect.
+          </p>
+
+          <p>
+            References explain mutation.
+            Scope explains closures.
+            Closures explain many callback patterns.
+            The runtime explains asynchronous behavior.
+            Promises provide a structured way to work with asynchronous
+            results.
+          </p>
+
+          <p>
+            Once those pieces start connecting, JavaScript stops feeling
+            random.
+          </p>
+
+          <div class="final-statement">
+
+            <span>
+              FIELD NOTE / 006
+            </span>
+
+            <strong>
+              Don't memorize<br>
+              the weird behavior.<br>
+              Understand why<br>
+              it happens.
+            </strong>
+
+          </div>
+
+        </section>
+
+
+        <div class="article-author">
+
+          <div class="author-avatar">
+            <img src="Profile.webp" alt="Prince Tiwari">
+          </div>
+
+          <div>
+
+            <span>
+              WRITTEN BY
+            </span>
+
+            <strong>
+              Prince Tiwari
+            </strong>
+
+            <p>
+              Full Stack Developer focused on React, Node.js, Java,
+              databases and practical software engineering.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="article-navigation">
+
+          <a href="blog-database.html">
+            <span>
+              PREVIOUS ARTICLE
+            </span>
+            ← The Day My Database Became the Problem
+          </a>
+
+          <a href="blog-java.html">
+            <span>
+              NEXT ARTICLE
+            </span>
+            Java vs JavaScript: Stop Comparing Them →
+          </a>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <section class="blog-section">
+
+    <div class="blog-wrap">
+
+      <div class="blog-cta blog-reveal">
+
+        <div>
+
+          <h2>
+            Have something<br>
+            worth building?
+          </h2>
+
+          <p>
+            Need a developer or want to discuss an interesting project?
+            Let's build something useful.
+          </p>
+
+        </div>
+
+        <a class="blog-btn" href="contact.html">
+          Contact Prince →
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+
+  <div class="wrap">
+
+    <div class="contact-grid">
+
+      <div>
+
+        <h2>
+          Let's build
+          <br>
+          something.
+        </h2>
+
+        <p style="color:var(--ink-dim); margin-top:16px; max-width:40ch;">
+          Open to full-stack developer roles and freelance MERN work.
+          Based in Noida, open to remote.
+        </p>
+
+      </div>
+
+      <div class="contact-list">
+
+        <a href="mailto:tiwariprince340@gmail.com">
+          <span class="k">Email</span>
+          tiwariprince340@gmail.com
+        </a>
+
+        <a href="tel:+916203811578">
+          <span class="k">Phone</span>
+          +91 62038 11578
+        </a>
+
+        <a
+          href="https://linkedin.com/in/princetiwariprincetiwari/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="k">LinkedIn</span>
+          Prince Tiwari
+        </a>
+
+        <a
+          href="https://github.com/PRINCETIWARI360"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="k">GitHub</span>
+          PRINCETIWARI360
+        </a>
+
+        <a
+          href="https://instagram.com/maiprrincehoon"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="k">Instagram</span>
+          @maiprrincehoon
+        </a>
+
+        <a href="index.html">
+          <span class="k">Base</span>
+          Noida, Uttar Pradesh, India
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="fine">
+      <span>
+        © <span id="year"></span> Prince Tiwari
+      </span>
+    </div>
+
+  </div>
+
+</footer>
+
+
+<script src="js/main.js"></script>
+<script src="js/blog.js"></script>
+
+</body>
+</html>

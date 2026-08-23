@@ -761,3 +761,40 @@
     grid-column: 1 / -1;
   }
 }
+.architecture-node {
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.architecture-node::after {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  top: 12px;
+  right: 12px;
+  border-radius: 50%;
+  background: #c94f20;
+}
+
+.architecture-node:hover {
+  transform: translateY(-6px);
+  box-shadow: 7px 7px 0 #28488f;
+}
+
+.frontend-node {
+  border-top: 4px solid #28488f !important;
+}
+
+.backend-node {
+  border-top: 4px solid #c94f20 !important;
+}
+
+.database-node {
+  border-top: 4px solid #28488f !important;
+}
+
+.architecture-arrow {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 600;
+}

@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
     response.textContent = "";
 
     emailjs.sendForm(
-      "service_dlj9k4k",
+      "service_djI9k4k",
       "template_fwq8azi",
       form
     )

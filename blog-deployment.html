@@ -5,29 +5,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>From localhost to the Internet | Prince Tiwari</title>
+  <title>Your Website Isn't Slow. Your Decisions Are. | Prince Tiwari</title>
 
-  <meta name="description" content="What actually happens when a web application moves from localhost to production: environment variables, APIs, databases, CORS, hosting, deployment and debugging.">
+  <meta name="description" content="A practical guide to web performance covering images, JavaScript, network requests, rendering, caching and the small development decisions that make websites slow.">
 
-  <meta name="keywords" content="Web Deployment, Node.js Deployment, React Deployment, Render, Vercel, Environment Variables, CORS, Production Deployment, Full Stack Development, Prince Tiwari">
+  <meta name="keywords" content="Web Performance, Website Speed, Frontend Performance, JavaScript Performance, React Performance, Web Optimization, Core Web Vitals, Prince Tiwari">
 
   <meta name="author" content="Prince Tiwari">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="language" content="English">
   <meta name="theme-color" content="#F3F1EA">
 
-  <link rel="canonical" href="https://princetiwari.in/blog-deployment.html">
+  <link rel="canonical" href="https://princetiwari.in/blog-performance.html">
 
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Prince Tiwari">
-  <meta property="og:title" content="From localhost to the Internet">
-  <meta property="og:description" content="The practical problems that appear when a full-stack application moves from local development to production.">
-  <meta property="og:url" content="https://princetiwari.in/blog-deployment.html">
+  <meta property="og:title" content="Your Website Isn't Slow. Your Decisions Are.">
+  <meta property="og:description" content="Why websites become slow and how images, JavaScript, network requests and rendering decisions affect performance.">
+  <meta property="og:url" content="https://princetiwari.in/blog-performance.html">
   <meta property="og:image" content="https://princetiwari.in/profile.jpg">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="From localhost to the Internet">
-  <meta name="twitter:description" content="A practical guide to deploying full-stack applications and debugging production issues.">
+  <meta name="twitter:title" content="Your Website Isn't Slow. Your Decisions Are.">
+  <meta name="twitter:description" content="A practical breakdown of frontend performance and website optimization.">
   <meta name="twitter:image" content="https://princetiwari.in/profile.jpg">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,8 +45,8 @@
   {
     "@context": "https://schema.org",
     "@type": "TechArticle",
-    "headline": "From localhost to the Internet",
-    "description": "A practical guide to deploying full-stack web applications from local development to production.",
+    "headline": "Your Website Isn't Slow. Your Decisions Are.",
+    "description": "A practical guide to website performance covering images, JavaScript, network requests, rendering and optimization.",
     "image": "https://princetiwari.in/profile.jpg",
     "author": {
       "@type": "Person",
@@ -61,14 +61,40 @@
     "dateModified": "2026-08-24",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://princetiwari.in/blog-deployment.html"
+      "@id": "https://princetiwari.in/blog-performance.html"
     },
     "keywords": [
-      "Web Deployment",
-      "Node.js",
-      "React",
-      "Production",
-      "CORS"
+      "Web Performance",
+      "JavaScript Performance",
+      "React Performance",
+      "Website Speed"
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://princetiwari.in/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://princetiwari.in/blog.html"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "From localhost to the Internet",
+        "item": "https://princetiwari.in/blog-deployment.html"
+      }
     ]
   }
   </script>
@@ -97,7 +123,7 @@
       <span></span>
     </button>
 
-    <nav class="links" id="navLinks">
+    <nav class="links" id="navLinks" aria-label="Primary navigation">
       <a href="about.html">About</a>
       <a href="stack.html">Stack</a>
       <a href="projects.html">Projects</a>
@@ -121,18 +147,18 @@
       </a>
 
       <div class="article-label">
-        CASE FILE / 04 · DEPLOYMENT
+        CASE FILE / 03 · PERFORMANCE
       </div>
 
       <h1>
-        From localhost
-        <span>to the Internet.</span>
+        Your Website Isn't Slow.
+        <span>Your Decisions Are.</span>
       </h1>
 
       <p class="article-lead">
-        The moment your application leaves localhost, a different set of
-        problems begins: environment variables, CORS, production APIs,
-        databases, builds, hosting and configuration.
+        A website rarely becomes slow because of one dramatic mistake.
+        More often, performance disappears through dozens of small
+        decisions that nobody notices individually.
       </p>
 
       <div class="article-meta">
@@ -149,12 +175,12 @@
 
         <div>
           <span>READ TIME</span>
-          <strong>8 min</strong>
+          <strong>7 min</strong>
         </div>
 
         <div>
           <span>FIELD</span>
-          <strong>Deployment Engineering</strong>
+          <strong>Web Performance</strong>
         </div>
 
       </div>
@@ -176,15 +202,14 @@
             ON THIS PAGE
           </span>
 
-          <a href="#localhost">01 — Localhost</a>
-          <a href="#architecture">02 — Production architecture</a>
-          <a href="#environment">03 — Environment variables</a>
-          <a href="#cors">04 — CORS</a>
-          <a href="#database">05 — Database</a>
-          <a href="#frontend">06 — Frontend</a>
-          <a href="#debugging">07 — Debugging</a>
-          <a href="#lessons">08 — Lessons</a>
-          <a href="#final">09 — Final thought</a>
+          <a href="#problem">01 — The problem</a>
+          <a href="#images">02 — Images</a>
+          <a href="#javascript">03 — JavaScript</a>
+          <a href="#network">04 — Network</a>
+          <a href="#rendering">05 — Rendering</a>
+          <a href="#measurement">06 — Measurement</a>
+          <a href="#mistakes">07 — Mistakes</a>
+          <a href="#final">08 — Final thought</a>
 
         </div>
 
@@ -194,118 +219,242 @@
       <article class="article-content">
 
         <p class="article-opening">
-          “It works on my machine” is not a deployment strategy.
+          Performance is not a feature you add at the end.
+          It is a result of hundreds of decisions made while building.
         </p>
 
         <p>
-          Local development is comfortable.
+          Developers often notice performance only after a website starts
+          feeling slow.
         </p>
 
         <p>
-          The frontend talks to localhost. The backend runs on your laptop.
-          The database is sitting right there. Environment variables are
-          already configured. You know exactly where every file is.
+          The page takes too long to appear. Images pop in late.
+          Buttons feel unresponsive. Mobile users wait while desktop users
+          wonder what the problem is.
         </p>
 
         <p>
-          Then you deploy.
+          Then someone says:
         </p>
+
+        <div class="article-highlight">
+
+          <span>
+            THE USUAL QUESTION
+          </span>
+
+          <strong>
+            “How do we make this website faster?”
+          </strong>
+
+        </div>
 
         <p>
-          Suddenly the frontend cannot reach the backend.
-          The database connection fails.
-          An environment variable is undefined.
-          A request works in Postman but fails in the browser.
+          A better question is:
         </p>
-
-        <p>
-          Nothing about the application changed conceptually.
-          The environment did.
-        </p>
-
 
         <div class="article-note">
 
           <span class="note-label">
-            FIELD NOTE 004
+            FIELD NOTE 003
           </span>
 
           <p>
-            Deployment does not magically fix an application.
-            It exposes assumptions that were invisible during local development.
+            What are we asking the browser to do that it does not actually
+            need to do?
           </p>
 
         </div>
 
 
-        <section id="localhost" class="article-section">
+        <section id="problem" class="article-section">
 
           <span class="article-section-number">
-            01 / LOCALHOST
+            01 / THE PROBLEM
           </span>
 
           <h2>
-            Local development hides a lot.
+            Speed is the sum of many small decisions.
           </h2>
 
           <p>
-            Imagine a React frontend running on one local port and an
-            Express backend running on another.
+            A page can be slowed down by large images, unnecessary JavaScript,
+            excessive network requests, inefficient rendering, third-party
+            scripts and poorly planned data fetching.
+          </p>
+
+          <p>
+            None of these necessarily looks disastrous in isolation.
+          </p>
+
+          <p>
+            Together, they become expensive.
           </p>
 
           <div class="code-block">
 
             <div class="code-head">
-              <span>LOCAL DEVELOPMENT</span>
-              <span>ARCHITECTURE</span>
+              <span>THE REQUEST CHAIN</span>
+              <span>BROWSER</span>
             </div>
 
-            <pre><code>Browser
-   │
-   ├── localhost:5173
-   │       ↓
-   │    React
-   │
-   └── localhost:5000
-           ↓
-        Express
-           ↓
-         MySQL</code></pre>
+            <pre><code>HTML
+ ↓
+CSS
+ ↓
+JavaScript
+ ↓
+API Requests
+ ↓
+Images
+ ↓
+Fonts
+ ↓
+Third-party Scripts
+ ↓
+Page becomes usable</code></pre>
 
           </div>
 
           <p>
-            Everything is close together. You control the entire environment.
-          </p>
-
-          <p>
-            Production is different because each part can live on a
-            completely different server or platform.
+            The user does not care which request caused the delay.
+            They simply experience the delay.
           </p>
 
         </section>
 
 
-        <section id="architecture" class="article-section">
+        <section id="images" class="article-section">
 
           <span class="article-section-number">
-            02 / PRODUCTION ARCHITECTURE
+            02 / IMAGES
           </span>
 
           <h2>
-            Production turns one project into several systems.
+            The biggest file on your page may be a picture.
           </h2>
 
           <p>
-            A typical deployed full-stack application may look more like this:
+            Images are one of the easiest places to create unnecessary
+            network cost.
+          </p>
+
+          <p>
+            A photograph exported at several megabytes may look almost
+            identical to a properly compressed version that is a fraction
+            of the size.
+          </p>
+
+          <p>
+            Modern formats such as WebP and AVIF can significantly reduce
+            image transfer sizes when used appropriately.
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>BETTER IMAGE LOADING</span>
+              <span>HTML</span>
+            </div>
+
+            <pre><code>&lt;img
+  src="profile.webp"
+  alt="Prince Tiwari"
+  width="600"
+  height="600"
+  loading="lazy"
+&gt;</code></pre>
+
+          </div>
+
+          <p>
+            There is another important idea here: do not send a huge image
+            to a small display area.
+          </p>
+
+          <p>
+            If the browser only needs a 400-pixel image, delivering a
+            3000-pixel source creates unnecessary work.
+          </p>
+
+        </section>
+
+
+        <section id="javascript" class="article-section">
+
+          <span class="article-section-number">
+            03 / JAVASCRIPT
+          </span>
+
+          <h2>
+            JavaScript is powerful enough to become expensive.
+          </h2>
+
+          <p>
+            JavaScript can make an interface interactive, dynamic and useful.
+            It can also become one of the most expensive parts of a page.
+          </p>
+
+          <p>
+            Every script has to be downloaded, parsed and executed.
+            Large bundles can therefore affect both network performance and
+            CPU time.
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>THINK BEFORE LOADING</span>
+              <span>JAVASCRIPT</span>
+            </div>
+
+            <pre><code>Do I need this script?
+
+Does it run on every page?
+
+Can it load later?
+
+Can this interaction work
+without JavaScript?</code></pre>
+
+          </div>
+
+          <p>
+            The goal is not to remove JavaScript.
+            The goal is to avoid asking the browser to execute work that
+            provides little value to the user.
+          </p>
+
+        </section>
+
+
+        <section id="network" class="article-section">
+
+          <span class="article-section-number">
+            04 / NETWORK
+          </span>
+
+          <h2>
+            Every request has a price.
+          </h2>
+
+          <p>
+            A page that makes dozens of unnecessary requests creates
+            additional network overhead.
+          </p>
+
+          <p>
+            This becomes especially noticeable on mobile networks where
+            latency can matter as much as download size.
           </p>
 
           <div class="architecture-diagram">
 
             <div>
               <span>01</span>
-              <strong>USER</strong>
-              <small>Browser</small>
+              <strong>REQUEST</strong>
+              <small>Browser asks</small>
             </div>
 
             <div class="architecture-arrow">
@@ -314,8 +463,8 @@
 
             <div>
               <span>02</span>
-              <strong>FRONTEND</strong>
-              <small>React / Vercel</small>
+              <strong>SERVER</strong>
+              <small>Processes</small>
             </div>
 
             <div class="architecture-arrow">
@@ -324,95 +473,55 @@
 
             <div>
               <span>03</span>
-              <strong>BACKEND</strong>
-              <small>Node / API</small>
+              <strong>RESPONSE</strong>
+              <small>Data returns</small>
             </div>
 
           </div>
 
           <p>
-            The backend then communicates with the database separately.
-          </p>
-
-          <div class="code-block">
-
-            <div class="code-head">
-              <span>PRODUCTION FLOW</span>
-              <span>FULL STACK</span>
-            </div>
-
-            <pre><code>User
- ↓
-React Frontend
- ↓
-HTTPS API Request
- ↓
-Node + Express
- ↓
-Database
- ↓
-JSON Response
- ↓
-React UI</code></pre>
-
-          </div>
-
-          <p>
-            Once you understand this separation, production errors become
-            easier to reason about.
+            Good performance often comes from reducing unnecessary work
+            instead of making the existing work slightly faster.
           </p>
 
         </section>
 
 
-        <section id="environment" class="article-section">
+        <section id="rendering" class="article-section">
 
           <span class="article-section-number">
-            03 / ENVIRONMENT VARIABLES
+            05 / RENDERING
           </span>
 
           <h2>
-            Your secrets do not belong in your source code.
+            The browser has work to do after downloading everything.
           </h2>
 
           <p>
-            Local development often uses environment variables for things
-            such as database credentials, API keys and service configuration.
-          </p>
-
-          <div class="code-block">
-
-            <div class="code-head">
-              <span>EXAMPLE</span>
-              <span>.ENV</span>
-            </div>
-
-            <pre><code>DB_HOST=your-host
-DB_USER=your-user
-DB_PASSWORD=your-password
-DB_NAME=your-database</code></pre>
-
-          </div>
-
-          <p>
-            The important idea is that production needs its own environment
-            configuration.
+            Downloading HTML, CSS and JavaScript is not the end of the story.
+            The browser still has to parse the resources, calculate styles,
+            build the page and paint pixels.
           </p>
 
           <p>
-            A variable existing in your local `.env` file does not mean it
-            automatically exists on your hosting platform.
+            This is why a small file size does not automatically guarantee
+            a fast experience.
+          </p>
+
+          <p>
+            Heavy animations, unnecessary DOM complexity and expensive
+            JavaScript operations can still make an interface feel slow.
           </p>
 
           <div class="article-highlight">
 
             <span>
-              REMEMBER
+              THE REAL TARGET
             </span>
 
             <strong>
-              Local environment variables and production environment
-              variables are separate configurations.
+              Don't optimize for a smaller website.
+              Optimize for a faster experience.
             </strong>
 
           </div>
@@ -420,271 +529,58 @@ DB_NAME=your-database</code></pre>
         </section>
 
 
-        <section id="cors" class="article-section">
+        <section id="measurement" class="article-section">
 
           <span class="article-section-number">
-            04 / CORS
+            06 / MEASUREMENT
           </span>
 
           <h2>
-            The browser suddenly becomes strict.
+            Never optimize only by feeling.
           </h2>
 
           <p>
-            One of the most confusing deployment problems for beginners is
-            CORS.
+            A page can feel fast on your own laptop and perform very
+            differently for someone on a slower device or network.
           </p>
 
           <p>
-            Locally, your frontend and backend may be running in a setup
-            where everything appears to work.
-          </p>
-
-          <p>
-            After deployment, the frontend and backend often have different
-            origins.
+            That is why performance should be measured.
           </p>
 
           <div class="code-block">
 
             <div class="code-head">
-              <span>DIFFERENT ORIGINS</span>
-              <span>PRODUCTION</span>
+              <span>MEASURE</span>
+              <span>WORKFLOW</span>
             </div>
 
-            <pre><code>Frontend
-https://your-frontend.com
-
-Backend
-https://your-api.com</code></pre>
+            <pre><code>1. Measure
+2. Find the bottleneck
+3. Change one thing
+4. Measure again
+5. Compare
+6. Repeat</code></pre>
 
           </div>
 
           <p>
-            The backend therefore needs to explicitly allow the frontend
-            origin when appropriate.
-          </p>
-
-          <div class="code-block">
-
-            <div class="code-head">
-              <span>EXPRESS</span>
-              <span>CORS</span>
-            </div>
-
-            <pre><code>const cors = require("cors");
-
-app.use(cors({
-  origin: "https://your-frontend.com"
-}));</code></pre>
-
-          </div>
-
-          <p>
-            CORS is not a problem with React or Express themselves.
-            It is a browser security mechanism that becomes visible when
-            applications live on different origins.
+            This approach is much better than changing ten things at once
+            and then guessing which change helped.
           </p>
 
         </section>
 
 
-        <section id="database" class="article-section">
+        <section id="mistakes" class="article-section">
 
           <span class="article-section-number">
-            05 / DATABASE
+            07 / MISTAKES
           </span>
 
           <h2>
-            The database needs to exist somewhere you don't control locally.
+            The performance mistakes I keep watching for.
           </h2>
-
-          <p>
-            During development, connecting to MySQL on your own computer
-            is straightforward.
-          </p>
-
-          <p>
-            A deployed backend cannot connect to your laptop's localhost
-            database.
-          </p>
-
-          <p>
-            The production backend needs access to a database that is
-            reachable from the deployed environment.
-          </p>
-
-          <div class="code-block">
-
-            <div class="code-head">
-              <span>THE DIFFERENCE</span>
-              <span>DATABASE</span>
-            </div>
-
-            <pre><code>LOCAL
-
-Node
- ↓
-localhost
- ↓
-MySQL
-
-
-PRODUCTION
-
-Node Server
- ↓
-Database Host
- ↓
-MySQL</code></pre>
-
-          </div>
-
-          <p>
-            This sounds obvious after you understand it.
-            It is surprisingly easy to forget while moving a project online.
-          </p>
-
-        </section>
-
-
-        <section id="frontend" class="article-section">
-
-          <span class="article-section-number">
-            06 / FRONTEND
-          </span>
-
-          <h2>
-            Your frontend also has a production configuration.
-          </h2>
-
-          <p>
-            One of the easiest deployment mistakes is leaving API URLs
-            pointing to localhost.
-          </p>
-
-          <div class="code-block">
-
-            <div class="code-head">
-              <span>LOCAL</span>
-              <span>API</span>
-            </div>
-
-            <pre><code>http://localhost:5000/api/products</code></pre>
-
-          </div>
-
-          <p>
-            That URL works on your computer because your computer is running
-            the backend.
-          </p>
-
-          <p>
-            It does not work for a visitor opening your deployed website.
-          </p>
-
-          <div class="code-block">
-
-            <div class="code-head">
-              <span>PRODUCTION</span>
-              <span>API</span>
-            </div>
-
-            <pre><code>https://your-api-domain.com/api/products</code></pre>
-
-          </div>
-
-          <p>
-            This is why production configuration should be treated as part
-            of the application rather than something you remember five
-            minutes before deployment.
-          </p>
-
-        </section>
-
-
-        <section id="debugging" class="article-section">
-
-          <span class="article-section-number">
-            07 / DEBUGGING
-          </span>
-
-          <h2>
-            Production debugging is mostly about asking better questions.
-          </h2>
-
-          <p>
-            When something breaks after deployment, randomly changing code
-            usually makes the problem harder to understand.
-          </p>
-
-          <p>
-            I prefer following the request from one end to the other.
-          </p>
-
-          <div class="code-block">
-
-            <div class="code-head">
-              <span>DEBUGGING CHECKLIST</span>
-              <span>PRODUCTION</span>
-            </div>
-
-            <pre><code>1. Did the frontend load?
-
-2. Is the API URL correct?
-
-3. Did the browser send the request?
-
-4. Did the server receive it?
-
-5. Did the server return an error?
-
-6. Did the database query work?
-
-7. Is the response what the UI expects?</code></pre>
-
-          </div>
-
-          <p>
-            Browser developer tools are often the first place to look.
-            Server logs are the second.
-            Database logs and direct API testing can then narrow the problem
-            further.
-          </p>
-
-          <div class="article-note">
-
-            <span class="note-label">
-              DEBUGGING RULE
-            </span>
-
-            <p>
-              Do not ask “Why is it broken?” Ask “At which exact step did
-              the expected behavior stop?”
-            </p>
-
-          </div>
-
-        </section>
-
-
-        <section id="lessons" class="article-section">
-
-          <span class="article-section-number">
-            08 / LESSONS
-          </span>
-
-          <h2>
-            Deployment taught me to think about environments earlier.
-          </h2>
-
-          <p>
-            Earlier, deployment felt like the final step of a project.
-          </p>
-
-          <p>
-            Now I think about it much earlier.
-          </p>
 
           <div class="mistake-list">
 
@@ -692,12 +588,12 @@ MySQL</code></pre>
               <span>01</span>
 
               <strong>
-                Know where your frontend will live
+                Huge unoptimized images
               </strong>
 
               <p>
-                The hosting environment affects routing, build commands and
-                configuration.
+                High-resolution assets are useful when necessary, but
+                delivering them everywhere is wasteful.
               </p>
             </div>
 
@@ -705,12 +601,12 @@ MySQL</code></pre>
               <span>02</span>
 
               <strong>
-                Know where your backend will live
+                Loading everything immediately
               </strong>
 
               <p>
-                Server configuration, ports, environment variables and
-                logs become production concerns.
+                Not every image, component or script needs to be available
+                during the first moment of page interaction.
               </p>
             </div>
 
@@ -718,12 +614,12 @@ MySQL</code></pre>
               <span>03</span>
 
               <strong>
-                Plan your database
+                Too many third-party scripts
               </strong>
 
               <p>
-                Persistent application data needs a production-ready
-                database and secure credentials.
+                Analytics, widgets, trackers and external libraries can
+                quietly add significant work.
               </p>
             </div>
 
@@ -731,12 +627,12 @@ MySQL</code></pre>
               <span>04</span>
 
               <strong>
-                Test the production flow
+                Optimizing without measuring
               </strong>
 
               <p>
-                A successful local request does not prove that the deployed
-                system works.
+                If there is no measurement, it is difficult to know whether
+                an optimization actually improved the experience.
               </p>
             </div>
 
@@ -748,47 +644,47 @@ MySQL</code></pre>
         <section id="final" class="article-section">
 
           <span class="article-section-number">
-            09 / FINAL THOUGHT
+            08 / FINAL THOUGHT
           </span>
 
           <h2>
-            Deployment is where the application meets reality.
+            Fast websites are usually intentional websites.
           </h2>
 
           <p>
-            Localhost gives you a controlled environment.
-            Production gives you an environment you have to design for.
+            Performance is not about blindly removing things.
           </p>
 
           <p>
-            Different servers.
-            Different domains.
-            Different credentials.
-            Different networks.
-            Real users.
-            Real failures.
+            It is about understanding what the user actually needs and
+            delivering that work efficiently.
           </p>
 
           <p>
-            That is why deployment is not simply clicking a Deploy button.
+            Smaller images.
+            Fewer unnecessary requests.
+            Less JavaScript.
+            Better loading strategies.
+            Smarter rendering.
+            Real measurements.
           </p>
 
           <p>
-            It is the process of making sure all the pieces of your
-            application can communicate correctly outside your laptop.
+            None of those ideas are particularly complicated.
+            The difficult part is remembering them while building.
           </p>
 
           <div class="final-statement">
 
             <span>
-              FIELD NOTE / 004
+              FIELD NOTE / 003
             </span>
 
             <strong>
-              If it only works<br>
-              on localhost,<br>
-              you haven't<br>
-              finished building it.
+              The fastest code<br>
+              is often the code<br>
+              you decided not<br>
+              to run.
             </strong>
 
           </div>
@@ -824,19 +720,47 @@ MySQL</code></pre>
 
         <div class="article-navigation">
 
-          <a href="blog-performance.html">
+          <a href="blog-react.html">
             <span>
               PREVIOUS ARTICLE
             </span>
-            ← Your Website Isn't Slow
+            ← React Is Not the Hard Part
           </a>
 
-          <a href="blog-database.html">
+          <a href="blog-deployment.html">
             <span>
               NEXT ARTICLE
             </span>
-            The Day My Database Became the Problem →
+            From localhost to the Internet →
           </a>
+
+
+        </div>
+
+        <div class="related-articles">
+
+          <div class="article-section-number">
+            RELATED NOTES
+          </div>
+
+          <div class="related-articles-grid">
+
+            <a href="blog-performance.html">
+              <span>PERFORMANCE</span>
+              Your Website Isn't Slow. Your Decisions Are →
+            </a>
+
+            <a href="blog-javascript.html">
+              <span>JAVASCRIPT</span>
+              JavaScript Gets Weird When You Go Deeper →
+            </a>
+
+            <a href="blogRead.html">
+              <span>FULL STACK</span>
+              What Building an E-Commerce App Taught Me →
+            </a>
+
+          </div>
 
         </div>
 
@@ -962,6 +886,7 @@ MySQL</code></pre>
 
 <script src="js/main.js"></script>
 <script src="js/blog.js"></script>
+<script src="js/blogRead.js"></script>
 
 </body>
 </html>

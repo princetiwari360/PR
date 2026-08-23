@@ -1,1 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>The Day My Database Became the Problem | Prince Tiwari</title>
+
+  <meta name="description" content="A practical guide to database design for web applications covering MySQL, relationships, queries, indexes, normalization, API data flow and common database mistakes.">
+
+  <meta name="keywords" content="MySQL, Database Design, SQL, Database Optimization, MySQL Queries, Database Relationships, Backend Development, Node.js MySQL, Full Stack Development, Prince Tiwari">
+
+  <meta name="author" content="Prince Tiwari">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="language" content="English">
+  <meta name="theme-color" content="#F3F1EA">
+
+  <link rel="canonical" href="https://princetiwari.in/blog-database.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Prince Tiwari">
+  <meta property="og:title" content="The Day My Database Became the Problem">
+  <meta property="og:description" content="What database design taught me about relationships, queries, data ownership and building reliable backend systems.">
+  <meta property="og:url" content="https://princetiwari.in/blog-database.html">
+  <meta property="og:image" content="https://princetiwari.in/profile.jpg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Day My Database Became the Problem">
+  <meta name="twitter:description" content="A practical look at MySQL, database design, relationships and backend data flow.">
+  <meta name="twitter:image" content="https://princetiwari.in/profile.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/blog.css">
+  <link rel="stylesheet" href="css/blogRead.css">
+
+  <link rel="icon" type="image/png" href="Pfavicon.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "The Day My Database Became the Problem",
+    "description": "A practical article about MySQL database design, relationships, queries, indexes and backend data flow.",
+    "image": "https://princetiwari.in/profile.jpg",
+    "author": {
+      "@type": "Person",
+      "name": "Prince Tiwari",
+      "url": "https://princetiwari.in/"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Prince Tiwari"
+    },
+    "datePublished": "2026-08-24",
+    "dateModified": "2026-08-24",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://princetiwari.in/blog-database.html"
+    },
+    "keywords": [
+      "MySQL",
+      "SQL",
+      "Database Design",
+      "Backend Development",
+      "Database Optimization"
+    ]
+  }
+  </script>
+</head>
+
+<body class="article-page">
+
+<header class="site">
+  <div class="nav">
+
+    <a class="brand" href="index.html">
+      <span class="badge">
+        <img src="Profile.webp" alt="Prince Tiwari">
+      </span>
+      PRINCE TIWARI
+    </a>
+
+    <button
+      class="nav-toggle"
+      id="navToggle"
+      aria-label="Toggle navigation"
+      aria-expanded="false"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="links" id="navLinks">
+      <a href="about.html">About</a>
+      <a href="stack.html">Stack</a>
+      <a href="projects.html">Projects</a>
+      <a href="education.html">Education</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+  </div>
+</header>
+
+
+<main>
+
+  <section class="article-hero">
+
+    <div class="article-wrap">
+
+      <a class="article-back" href="blog.html">
+        ← Back to engineering journal
+      </a>
+
+      <div class="article-label">
+        CASE FILE / 05 · DATABASE
+      </div>
+
+      <h1>
+        The Day My Database
+        <span>Became the Problem.</span>
+      </h1>
+
+      <p class="article-lead">
+        APIs can be perfectly written and still feel broken when the
+        database behind them is poorly designed. This is what I learned
+        about relationships, queries, data ownership and persistence.
+      </p>
+
+      <div class="article-meta">
+
+        <div>
+          <span>AUTHOR</span>
+          <strong>Prince Tiwari</strong>
+        </div>
+
+        <div>
+          <span>PUBLISHED</span>
+          <strong>24 Aug 2026</strong>
+        </div>
+
+        <div>
+          <span>READ TIME</span>
+          <strong>7 min</strong>
+        </div>
+
+        <div>
+          <span>FIELD</span>
+          <strong>Database Engineering</strong>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="article-body-section">
+
+    <div class="article-layout">
+
+      <aside class="article-sidebar">
+
+        <div class="article-index">
+
+          <span class="article-index-title">
+            ON THIS PAGE
+          </span>
+
+          <a href="#beginning">01 — The beginning</a>
+          <a href="#tables">02 — Tables</a>
+          <a href="#relationships">03 — Relationships</a>
+          <a href="#api">04 — API flow</a>
+          <a href="#queries">05 — Queries</a>
+          <a href="#indexes">06 — Indexes</a>
+          <a href="#mistakes">07 — Mistakes</a>
+          <a href="#lessons">08 — Lessons</a>
+          <a href="#final">09 — Final thought</a>
+
+        </div>
+
+      </aside>
+
+
+      <article class="article-content">
+
+        <p class="article-opening">
+          The database usually looks innocent until the application starts
+          asking difficult questions.
+        </p>
+
+        <p>
+          At the beginning of a project, creating a table feels simple.
+        </p>
+
+        <p>
+          Add an ID.
+          Add a name.
+          Add an email.
+          Add a price.
+          Insert some rows.
+          Done.
+        </p>
+
+        <p>
+          Then the application grows.
+        </p>
+
+        <p>
+          Users have orders. Orders have products. Products belong to
+          categories. Users have addresses. Products have stock.
+          Administrators need to update products.
+        </p>
+
+        <p>
+          Suddenly the database is no longer a storage box.
+          It has become part of the architecture.
+        </p>
+
+
+        <div class="article-note">
+
+          <span class="note-label">
+            FIELD NOTE 005
+          </span>
+
+          <p>
+            A database does not simply store your application.
+            Its structure influences how your application behaves.
+          </p>
+
+        </div>
+
+
+        <section id="beginning" class="article-section">
+
+          <span class="article-section-number">
+            01 / THE BEGINNING
+          </span>
+
+          <h2>
+            The first database is usually too simple.
+          </h2>
+
+          <p>
+            Beginners often think about database tables individually.
+          </p>
+
+          <p>
+            A users table.
+            A products table.
+            An orders table.
+          </p>
+
+          <p>
+            The more important question is how those tables relate to each
+            other.
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>BASIC SYSTEM</span>
+              <span>DATABASE</span>
+            </div>
+
+            <pre><code>Users
+  ↓
+Orders
+  ↓
+Order Items
+  ↓
+Products</code></pre>
+
+          </div>
+
+          <p>
+            Once this relationship is clear, many backend decisions become
+            easier.
+          </p>
+
+        </section>
+
+
+        <section id="tables" class="article-section">
+
+          <span class="article-section-number">
+            02 / TABLES
+          </span>
+
+          <h2>
+            A table should have a reason to exist.
+          </h2>
+
+          <p>
+            One useful way to think about a relational table is that it
+            represents one type of thing or one meaningful relationship.
+          </p>
+
+          <p>
+            For example, a products table might contain:
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>PRODUCTS</span>
+              <span>MYSQL</span>
+            </div>
+
+            <pre><code>products
+──────────────
+id
+name
+description
+price
+image
+stock
+category_id</code></pre>
+
+          </div>
+
+          <p>
+            The important part is not memorizing columns.
+            It is understanding what each column represents and who owns
+            that information.
+          </p>
+
+          <p>
+            If a value describes a product, it belongs with the product.
+            If it describes an order, it belongs with the order.
+            If it describes the relationship between an order and a product,
+            it may belong in an order-items table.
+          </p>
+
+        </section>
+
+
+        <section id="relationships" class="article-section">
+
+          <span class="article-section-number">
+            03 / RELATIONSHIPS
+          </span>
+
+          <h2>
+            Relationships are where the real design begins.
+          </h2>
+
+          <p>
+            Consider an e-commerce application.
+          </p>
+
+          <p>
+            One user can create many orders.
+            One order can contain many products.
+            One product can appear in many orders.
+          </p>
+
+          <p>
+            That creates a relationship structure.
+          </p>
+
+          <div class="architecture-diagram">
+
+            <div>
+              <span>01</span>
+              <strong>USER</strong>
+              <small>One user</small>
+            </div>
+
+            <div class="architecture-arrow">
+              →
+            </div>
+
+            <div>
+              <span>02</span>
+              <strong>ORDER</strong>
+              <small>Many orders</small>
+            </div>
+
+            <div class="architecture-arrow">
+              →
+            </div>
+
+            <div>
+              <span>03</span>
+              <strong>ITEMS</strong>
+              <small>Order lines</small>
+            </div>
+
+          </div>
+
+          <p>
+            Instead of storing a giant product list directly inside every
+            order row, a relational model can represent the relationship
+            using an order-items table.
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>ORDER ITEMS</span>
+              <span>RELATIONSHIP</span>
+            </div>
+
+            <pre><code>order_items
+──────────────
+id
+order_id
+product_id
+quantity
+price</code></pre>
+
+          </div>
+
+          <p>
+            This structure gives the backend a much clearer representation
+            of what actually happened during a purchase.
+          </p>
+
+        </section>
+
+
+        <section id="api" class="article-section">
+
+          <span class="article-section-number">
+            04 / API FLOW
+          </span>
+
+          <h2>
+            The API is the bridge between the UI and the database.
+          </h2>
+
+          <p>
+            The browser normally should not communicate directly with the
+            database.
+          </p>
+
+          <p>
+            Instead, the backend receives a request, validates it, performs
+            the required database operation and returns a response.
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>DATA FLOW</span>
+              <span>FULL STACK</span>
+            </div>
+
+            <pre><code>React
+  ↓
+POST /api/orders
+  ↓
+Express
+  ↓
+Validation
+  ↓
+SQL Query
+  ↓
+MySQL
+  ↓
+Result
+  ↓
+JSON Response
+  ↓
+React</code></pre>
+
+          </div>
+
+          <p>
+            Once this flow is clear, database problems can be isolated much
+            more quickly.
+          </p>
+
+          <p>
+            If the API receives incorrect data, investigate the frontend.
+            If the API receives correct data but stores it incorrectly,
+            investigate the backend or SQL query.
+          </p>
+
+        </section>
+
+
+        <section id="queries" class="article-section">
+
+          <span class="article-section-number">
+            05 / QUERIES
+          </span>
+
+          <h2>
+            SQL is where your application asks questions.
+          </h2>
+
+          <p>
+            A database becomes useful when the application can retrieve
+            exactly the information it needs.
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>SELECT</span>
+              <span>MYSQL</span>
+            </div>
+
+            <pre><code>SELECT
+  id,
+  name,
+  price
+FROM products
+WHERE stock > 0
+ORDER BY price ASC;</code></pre>
+
+          </div>
+
+          <p>
+            The query expresses a very specific question:
+            give me products that are available and order them by price.
+          </p>
+
+          <p>
+            As applications grow, queries become more complex.
+            Joins, filtering, sorting and aggregation can all affect how
+            efficiently the database answers those questions.
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>JOIN</span>
+              <span>MYSQL</span>
+            </div>
+
+            <pre><code>SELECT
+  orders.id,
+  users.name,
+  orders.total
+FROM orders
+JOIN users
+  ON orders.user_id = users.id;</code></pre>
+
+          </div>
+
+          <p>
+            Understanding SQL therefore becomes more important as the
+            backend becomes more sophisticated.
+          </p>
+
+        </section>
+
+
+        <section id="indexes" class="article-section">
+
+          <span class="article-section-number">
+            06 / INDEXES
+          </span>
+
+          <h2>
+            Sometimes the problem is not the query.
+            It is how the database searches.
+          </h2>
+
+          <p>
+            Databases may need to inspect many rows to find the information
+            requested by a query.
+          </p>
+
+          <p>
+            Indexes can provide a more efficient way to locate frequently
+            searched values.
+          </p>
+
+          <div class="article-highlight">
+
+            <span>
+              SIMPLE IDEA
+            </span>
+
+            <strong>
+              If the application frequently searches by a column,
+              that column may deserve careful indexing.
+            </strong>
+
+          </div>
+
+          <p>
+            But indexes are not free.
+          </p>
+
+          <p>
+            They consume storage and can add work when data is inserted or
+            updated. The right approach is therefore not “index everything.”
+            It is to understand the queries the application actually runs.
+          </p>
+
+        </section>
+
+
+        <section id="mistakes" class="article-section">
+
+          <span class="article-section-number">
+            07 / MISTAKES
+          </span>
+
+          <h2>
+            The database mistakes that hurt later.
+          </h2>
+
+          <div class="mistake-list">
+
+            <div>
+              <span>01</span>
+
+              <strong>
+                Storing everything in one table
+              </strong>
+
+              <p>
+                Large tables containing unrelated information become harder
+                to maintain and often create duplicated data.
+              </p>
+            </div>
+
+            <div>
+              <span>02</span>
+
+              <strong>
+                No clear relationships
+              </strong>
+
+              <p>
+                Without foreign keys and meaningful relationships, the
+                application can lose track of which records belong together.
+              </p>
+            </div>
+
+            <div>
+              <span>03</span>
+
+              <strong>
+                Trusting every value from the client
+              </strong>
+
+              <p>
+                Client-side validation improves user experience but should
+                never replace backend validation.
+              </p>
+            </div>
+
+            <div>
+              <span>04</span>
+
+              <strong>
+                Ignoring query performance
+              </strong>
+
+              <p>
+                A query that feels instant with a few rows may become a
+                serious bottleneck when the database grows.
+              </p>
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <section id="lessons" class="article-section">
+
+          <span class="article-section-number">
+            08 / LESSONS
+          </span>
+
+          <h2>
+            Design the data before designing every screen.
+          </h2>
+
+          <p>
+            One of the biggest lessons I learned is that frontend decisions
+            become easier when the underlying data model is clear.
+          </p>
+
+          <p>
+            If you know what a product is, what an order is and how they
+            relate, the API becomes easier to design.
+          </p>
+
+          <p>
+            If the API is clear, the React state becomes easier to structure.
+          </p>
+
+          <p>
+            Good database design therefore affects much more than SQL.
+          </p>
+
+          <div class="code-block">
+
+            <div class="code-head">
+              <span>THINK IN THIS ORDER</span>
+              <span>ARCHITECTURE</span>
+            </div>
+
+            <pre><code>What data exists?
+       ↓
+Who owns it?
+       ↓
+How is it related?
+       ↓
+Which API exposes it?
+       ↓
+How does the UI consume it?</code></pre>
+
+          </div>
+
+        </section>
+
+
+        <section id="final" class="article-section">
+
+          <span class="article-section-number">
+            09 / FINAL THOUGHT
+          </span>
+
+          <h2>
+            A good database makes the rest of the application quieter.
+          </h2>
+
+          <p>
+            When the data model makes sense, the backend has fewer awkward
+            decisions to make.
+          </p>
+
+          <p>
+            When the backend is predictable, the frontend becomes easier
+            to build.
+          </p>
+
+          <p>
+            When the frontend receives predictable data, the user gets a
+            more reliable experience.
+          </p>
+
+          <p>
+            That is why database design is not just a backend concern.
+            It is part of the architecture of the entire product.
+          </p>
+
+          <div class="final-statement">
+
+            <span>
+              FIELD NOTE / 005
+            </span>
+
+            <strong>
+              Good data design<br>
+              makes good software<br>
+              easier to build.
+            </strong>
+
+          </div>
+
+        </section>
+
+
+        <div class="article-author">
+
+          <div class="author-avatar">
+            <img src="Profile.webp" alt="Prince Tiwari">
+          </div>
+
+          <div>
+
+            <span>
+              WRITTEN BY
+            </span>
+
+            <strong>
+              Prince Tiwari
+            </strong>
+
+            <p>
+              Full Stack Developer focused on React, Node.js, Java,
+              databases and practical software engineering.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="article-navigation">
+
+          <a href="blog-deployment.html">
+            <span>
+              PREVIOUS ARTICLE
+            </span>
+            ← From localhost to the Internet
+          </a>
+
+          <a href="blog-javascript.html">
+            <span>
+              NEXT ARTICLE
+            </span>
+            JavaScript Gets Weird When You Go Deeper →
+          </a>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <section class="blog-section">
+
+    <div class="blog-wrap">
+
+      <div class="blog-cta blog-reveal">
+
+        <div>
+
+          <h2>
+            Have something<br>
+            worth building?
+          </h2>
+
+          <p>
+            Need a developer or want to discuss an interesting project?
+            Let's build something useful.
+          </p>
+
+        </div>
+
+        <a class="blog-btn" href="contact.html">
+          Contact Prince →
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+
+  <div class="wrap">
+
+    <div class="contact-grid">
+
+      <div>
+
+        <h2>
+          Let's build
+          <br>
+          something.
+        </h2>
+
+        <p style="color:var(--ink-dim); margin-top:16px; max-width:40ch;">
+          Open to full-stack developer roles and freelance MERN work.
+          Based in Noida, open to remote.
+        </p>
+
+      </div>
+
+      <div class="contact-list">
+
+        <a href="mailto:tiwariprince340@gmail.com">
+          <span class="k">Email</span>
+          tiwariprince340@gmail.com
+        </a>
+
+        <a href="tel:+916203811578">
+          <span class="k">Phone</span>
+          +91 62038 11578
+        </a>
+
+        <a
+          href="https://linkedin.com/in/princetiwariprincetiwari/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="k">LinkedIn</span>
+          Prince Tiwari
+        </a>
+
+        <a
+          href="https://github.com/PRINCETIWARI360"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="k">GitHub</span>
+          PRINCETIWARI360
+        </a>
+
+        <a
+          href="https://instagram.com/maiprrincehoon"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="k">Instagram</span>
+          @maiprrincehoon
+        </a>
+
+        <a href="index.html">
+          <span class="k">Base</span>
+          Noida, Uttar Pradesh, India
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="fine">
+      <span>
+        © <span id="year"></span> Prince Tiwari
+      </span>
+    </div>
+
+  </div>
+
+</footer>
+
+
+<script src="js/main.js"></script>
+<script src="js/blog.js"></script>
+
+</body>
+</html>
